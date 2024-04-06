@@ -30,5 +30,10 @@ gradlePlugin {
             id = "obilet.android.application"
             implementationClass = "AndroidApplicationConventionPlugin"
         }
+
+        register("androidLibrary") {
+            id = "obilet.android.library"
+            implementationClass = "AndroidLibraryConventionPlugin"
+        }
     }
 }
