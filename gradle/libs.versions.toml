@@ -1,0 +1,30 @@
+[versions]
+androidXCore = "1.12.0"
+androidXAppCompat = "1.6.1"
+material = "1.11.0"
+androidXConstraintLayout = "2.1.4"
+junit4 = "4.13.2"
+androidXJunit = "1.1.5"
+androidXEspresso = "3.5.1"
+kotlin = "1.9.0"
+androidGradlePlugin = "8.1.4"
+
+
+[libraries]
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidXAppCompat" }
+androidx-core = { group = "androidx.core", name = "core-ktx", version.ref = "androidXCore" }
+google-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+junit = { group = "junit", name = "junit", version.ref = "junit4" }
+androidx-test-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "androidXEspresso" }
+androidx-test-junit = { group = "androidx.test.ext", name = "junit", version.ref = "androidXJunit" }
+
+
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+
+# Plugins defined by this project
+obilet-android-application = { id = "obilet.android.application", version = "unspecified" }
