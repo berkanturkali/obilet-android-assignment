@@ -22,6 +22,7 @@ dependencies {
         libs.okhttp.logging,
         libs.okhttp,
         libs.moshi,
-        libs.moshi.adapters
+        libs.moshi.adapters,
+        libs.retrofit.moshi.converter
     )
 }
