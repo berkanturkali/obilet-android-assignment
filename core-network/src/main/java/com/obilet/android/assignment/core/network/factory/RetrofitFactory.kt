@@ -6,14 +6,16 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Inject
 
 /**
  * [RetrofitFactory] is a factory class that is responsible for the creation of [Retrofit] object
  */
-class RetrofitFactory constructor(private val moshi: Moshi) {
+class RetrofitFactory @Inject constructor(private val moshi: Moshi) {
     companion object {
         private const val TIME_OUT_DURATION: Long = 120
     }
+
     fun createRetrofit(
         url: String,
         isDebug: Boolean,
