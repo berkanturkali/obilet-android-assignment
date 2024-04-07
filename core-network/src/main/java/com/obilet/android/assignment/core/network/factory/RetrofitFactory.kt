@@ -6,21 +6,19 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
-import javax.inject.Inject
 
 /**
  * [RetrofitFactory] is a factory class that is responsible for the creation of [Retrofit] object
  */
-class RetrofitFactory @Inject constructor(private val moshi: Moshi) {
-    companion object {
-        private const val TIME_OUT_DURATION: Long = 120
-    }
+object RetrofitFactory {
 
+    private const val TIME_OUT_DURATION: Long = 120
     fun createRetrofit(
         url: String,
         isDebug: Boolean,
+        moshi: Moshi,
     ): Retrofit {
-        val client: OkHttpClient = makeOkHttpClient(
+        val client: OkHttpClient = provideOkHttpClient(
             httpLoggingInterceptor = provideHttpLoggingInterceptor(isDebug = isDebug),
         )
         return Retrofit.Builder()
@@ -41,7 +39,7 @@ class RetrofitFactory @Inject constructor(private val moshi: Moshi) {
     }
 
 
-    private fun makeOkHttpClient(
+    private fun provideOkHttpClient(
         httpLoggingInterceptor: HttpLoggingInterceptor,
     ): OkHttpClient {
         return OkHttpClient.Builder()
