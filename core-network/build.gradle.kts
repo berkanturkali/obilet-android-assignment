@@ -3,6 +3,7 @@ import com.obilet.android.assignment.implementAll
 
 plugins {
     alias(libs.plugins.obilet.android.library)
+    alias(libs.plugins.obilet.android.hilt)
 }
 
 android {

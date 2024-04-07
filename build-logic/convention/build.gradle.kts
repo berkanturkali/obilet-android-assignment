@@ -36,5 +36,10 @@ gradlePlugin {
             id = "obilet.android.library"
             implementationClass = "AndroidLibraryConventionPlugin"
         }
+
+        register("androidHilt") {
+            id = "obilet.android.hilt"
+            implementationClass = "AndroidHiltConventionPlugin"
+        }
     }
 }
