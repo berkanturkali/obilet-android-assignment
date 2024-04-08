@@ -16,6 +16,9 @@ object MoshiModule {
     @[Provides Singleton]
     fun provideMoshi(): Moshi = Moshi.Builder()
         .add(KotlinJsonAdapterFactory())
-        .add(EnumJsonAdapter.create(Status::class.java))
+        .add(
+            Status::class.java,
+            EnumJsonAdapter.create(Status::class.java).withUnknownFallback(null)
+        )
         .build()
 }

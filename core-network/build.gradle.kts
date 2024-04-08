@@ -1,5 +1,6 @@
 import OBiletBuildType.Companion.Debug
 import com.obilet.android.assignment.implementAll
+import com.obilet.android.assignment.implementAllUnitTests
 
 plugins {
     alias(libs.plugins.obilet.android.library)
@@ -25,5 +26,10 @@ dependencies {
         libs.moshi,
         libs.moshi.adapters,
         libs.retrofit.moshi.converter
+    )
+
+    implementAllUnitTests(
+        libs.google.truth,
+        libs.okhttp.mock.web.server
     )
 }

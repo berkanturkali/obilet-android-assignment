@@ -2,6 +2,7 @@ import OBiletBuildType.Companion.Release
 
 plugins {
     alias(libs.plugins.obilet.android.application)
+    alias(libs.plugins.obilet.android.hilt)
 }
 
 android {
@@ -25,6 +26,12 @@ android {
             )
         }
     }
+    kapt {
+        correctErrorTypes = true
+    }
+}
+hilt {
+    enableAggregatingTask = true
 }
 
 dependencies {}

@@ -2,6 +2,8 @@ package com.obilet.android.assignment.core.network.model.response.get_session
 
 import com.obilet.android.assignment.core.network.model.response.Status
 import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+
 
 data class GetSessionResponseDTO(
     val status: Status? = null,

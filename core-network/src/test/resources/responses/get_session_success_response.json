@@ -1,0 +1,19 @@
+{
+  "status": "Success",
+  "data": {
+    "session-id": "I3CmBiXYge1zIfG5FzK3ULKujWlergTTJ6CgtxzvNwA=",
+    "device-id": "B+lxkQUiCiPDYnU8o0fSzGWABT42HYxKt3pwNBTduVg=",
+    "affiliate": null,
+    "device-type": 0,
+    "device": null,
+    "ip-country": "TR"
+  },
+  "message": null,
+  "user-message": null,
+  "api-request-id": null,
+  "controller": "Client",
+  "client-request-id": null,
+  "web-correlation-id": null,
+  "correlation-id": "0d304d60-181f-4eca-b96b-45a885eb1102",
+  "parameters": null
+}
