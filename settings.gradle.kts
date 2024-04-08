@@ -18,3 +18,4 @@ rootProject.name = "OBilet"
 include(":app")
 include(":core-network")
 include(":core-data")
+include(":core-model")
