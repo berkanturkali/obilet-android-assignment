@@ -17,3 +17,4 @@ dependencyResolutionManagement {
 rootProject.name = "OBilet"
 include(":app")
 include(":core-network")
+include(":core-data")
