@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="no_result_found">No result found.</string>
+    <string name="something_went_wrong">Something went wrong.</string>
+    <string name="timeout">The request has timed out.</string>
+    <string name="check_your_connection">Please check your internet connection.</string>
+</resources>

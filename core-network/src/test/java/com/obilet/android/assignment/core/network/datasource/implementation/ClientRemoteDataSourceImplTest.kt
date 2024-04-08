@@ -6,7 +6,8 @@ import com.obilet.android.assignment.core.network.dispatcher.ClientDispatcher
 import com.obilet.android.assignment.core.network.factory.getJson
 import com.obilet.android.assignment.core.network.factory.makeApiService
 import com.obilet.android.assignment.core.network.factory.responseAdapter
-import com.obilet.android.assignment.core.network.model.response.get_session.GetSessionResponseDTO
+import com.obilet.android.assignment.core.network.model.response.base.BaseResponseDTO
+import com.obilet.android.assignment.core.network.model.response.get_session.GetSessionDTO
 import com.obilet.android.assignment.core.network.utils.DummyData
 import com.obilet.android.assignment.core.network.utils.UrlConstants
 import kotlinx.coroutines.runBlocking
@@ -40,7 +41,7 @@ class ClientRemoteDataSourceImplTest {
     fun `check that getSession returns correct data`() = runBlocking {
         val response = dataSource.getSession(DummyData.getSessionRequestModel)
         val expectedResponse =
-            responseAdapter<GetSessionResponseDTO, String>().fromJson(getJson(UrlConstants.GET_SESSION_SUCCESS_RESPONSE))
+            responseAdapter<BaseResponseDTO<GetSessionDTO>, GetSessionDTO>().fromJson(getJson(UrlConstants.GET_SESSION_SUCCESS_RESPONSE))
         Truth.assertThat(expectedResponse).isEqualTo(response.body())
     }
 

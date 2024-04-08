@@ -5,7 +5,7 @@ import com.squareup.moshi.Json
 
 data class BaseResponseDTO<T>(
     val status: Status? = null,
-    val data: List<T>? = null,
+    val data: T? = null,
     val message: String? = null,
     @Json(name = "user-message")
     val userMessage: String? = null,

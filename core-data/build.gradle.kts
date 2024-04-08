@@ -1,6 +1,7 @@
 import com.obilet.android.assignment.Modules
 import com.obilet.android.assignment.implementAll
 import com.obilet.android.assignment.implementAllProjects
+import com.obilet.android.assignment.implementAllUnitTests
 
 plugins {
     alias(libs.plugins.obilet.android.library)
@@ -24,5 +25,9 @@ dependencies {
 
     implementAll(
         libs.retrofit.core,
+    )
+
+    implementAllUnitTests(
+        libs.google.truth,
     )
 }

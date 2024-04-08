@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="no_result_found">Sonuç bulunamadı.</string>
+    <string name="something_went_wrong">Bir şeyler ters gitti.</string>
+    <string name="timeout">İstek zaman aşımına uğradı.</string>
+    <string name="check_your_connection">Lütfen internet bağlantınızı kontrol ediniz.</string>
+</resources>
