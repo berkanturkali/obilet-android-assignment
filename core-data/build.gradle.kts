@@ -1,4 +1,6 @@
+import com.obilet.android.assignment.Modules
 import com.obilet.android.assignment.implementAll
+import com.obilet.android.assignment.implementAllProjects
 
 plugins {
     alias(libs.plugins.obilet.android.library)
@@ -15,7 +17,12 @@ android {
 
 dependencies {
 
+    implementAllProjects(
+        Modules.CORE_NETWORK,
+        Modules.CORE_MODEL,
+    )
+
     implementAll(
         libs.retrofit.core,
-        )
+    )
 }
