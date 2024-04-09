@@ -67,25 +67,28 @@ object ApiManager {
 
                 }
             } catch (exception: Exception) {
-                when (exception) {
-                    is TimeoutCancellationException -> {
-                        emit(Resource.Error(text = UiText.StringResource(R.string.timeout)))
-                    }
+                emit(handleException(exception))
+            }
+        }
+    }
 
-                    is IOException -> {
-                        emit(
-                            Resource.Error(
-                                text = exception.localizedMessage?.let { message ->
-                                    UiText.DynamicString(message)
-                                }
-                                    ?: UiText.StringResource(R.string.check_your_connection)
-                            ))
-                    }
+    fun <T> handleException(exception: Exception): Resource.Error<T> {
+        return when (exception) {
+            is TimeoutCancellationException -> {
+                Resource.Error(text = UiText.StringResource(R.string.timeout))
+            }
 
-                    else -> {
-                        emit(Resource.Error(text = UiText.StringResource(R.string.something_went_wrong)))
+            is IOException -> {
+                Resource.Error(
+                    text = exception.localizedMessage?.let { message ->
+                        UiText.DynamicString(message)
                     }
-                }
+                        ?: UiText.StringResource(R.string.check_your_connection)
+                )
+            }
+
+            else -> {
+                Resource.Error(text = UiText.StringResource(R.string.something_went_wrong))
             }
         }
     }

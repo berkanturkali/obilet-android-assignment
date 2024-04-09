@@ -4,4 +4,5 @@
     <string name="something_went_wrong">Bir şeyler ters gitti.</string>
     <string name="timeout">İstek zaman aşımına uğradı.</string>
     <string name="check_your_connection">Lütfen internet bağlantınızı kontrol ediniz.</string>
+    <string name="something_went_wrong_please_try_again_later">Bir şeyler ters gitti.\nLütfen daha sonra tekrar deneyiniz.</string>
 </resources>

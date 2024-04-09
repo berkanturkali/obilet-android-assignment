@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">OBilet</string>
+    <string name="app_name" translatable="false">OBilet</string>
+    <string name="okay">Tamam</string>
 </resources>

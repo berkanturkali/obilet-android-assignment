@@ -14,7 +14,7 @@ android {
     defaultConfig {
         applicationId = "com.obilet.android.assignment"
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -32,6 +32,9 @@ android {
     kapt {
         correctErrorTypes = true
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 hilt {
     enableAggregatingTask = true
@@ -45,6 +48,7 @@ dependencies {
     )
     implementAll(
         libs.androidx.core.splashScreen,
-        libs.androidx.lifecycle.viewmodel
+        libs.androidx.lifecycle.viewmodel,
+        libs.androidx.fragment.ktx
     )
 }

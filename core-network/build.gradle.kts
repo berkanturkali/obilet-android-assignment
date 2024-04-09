@@ -14,6 +14,7 @@ android {
 
     defaultConfig {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "OUTBOUND_IP_URL", "\"https://api.ipify.org/\"")
     }
     buildTypes.getByName(Debug.name)
         .buildConfigField("String", "BASE_URL", "\"https://v2-api.obilet.com/api/\"")

@@ -16,6 +16,7 @@ truth = "1.4.2"
 mockWebServer = "4.12.0"
 splashScreen = "1.0.1"
 androidXLifecycleViewModel = "2.7.0"
+androidXFragmentKtx = "1.6.2"
 
 
 [libraries]
@@ -37,6 +38,7 @@ google-truth = { group = "com.google.truth", name = "truth", version.ref = "trut
 okhttp-mock-web-server = { group = "com.squareup.okhttp3", name = "mockwebserver", version.ref = "mockWebServer" }
 androidx-core-splashScreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "splashScreen" }
 androidx-lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "androidXLifecycleViewModel" }
+androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "androidXFragmentKtx" }
 
 
 # Dependencies of the included build-logic
