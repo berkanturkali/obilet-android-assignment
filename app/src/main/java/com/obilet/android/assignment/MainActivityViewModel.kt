@@ -1,5 +1,7 @@
 package com.obilet.android.assignment
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.obilet.android.assignment.core.data.repository.client.abstraction.ClientRepository
@@ -7,6 +9,7 @@ import com.obilet.android.assignment.core.data.repository.ip.abstraction.IpRepos
 import com.obilet.android.assignment.core.data.repository.ip.implementation.IpRepositoryImpl
 import com.obilet.android.assignment.core.model.DeviceType
 import com.obilet.android.assignment.core.model.Resource
+import com.obilet.android.assignment.core.model.UiText
 import com.obilet.android.assignment.core.network.model.request.get_session.Application
 import com.obilet.android.assignment.core.network.model.request.get_session.Connection
 import com.obilet.android.assignment.core.network.model.request.get_session.GetSessionRequestModel
@@ -26,16 +29,21 @@ class MainActivityViewModel @Inject constructor(
 
     var showSplashScreen = true
 
+    private val _showErrorDialog = MutableLiveData<UiText?>()
+
+    val showErrorDialog: LiveData<UiText?> get() = _showErrorDialog
+
     init {
         getOutboundIPAddress()
     }
 
-    fun getOutboundIPAddress() {
+    private fun getOutboundIPAddress() {
         viewModelScope.launch(Dispatchers.Main) {
             ipRepo.getOutboundIpAddress().collectLatest { resource ->
                 when (resource) {
                     is Resource.Error -> {
-                        showSplashScreen = true
+                        showSplashScreen = false
+                        _showErrorDialog.value = resource.error
                     }
 
                     is Resource.Loading -> {
@@ -55,7 +63,7 @@ class MainActivityViewModel @Inject constructor(
         }
     }
 
-    fun getSession(ipAddress: String) {
+    private fun getSession(ipAddress: String) {
         viewModelScope.launch(Dispatchers.Main) {
             clientRepo.getSession(
                 GetSessionRequestModel(
@@ -71,11 +79,14 @@ class MainActivityViewModel @Inject constructor(
             ).collectLatest { resource ->
                 when (resource) {
                     is Resource.Error -> {
-                        showSplashScreen = true
+                        showSplashScreen = false
+                        _showErrorDialog.value = resource.error
                     }
+
                     is Resource.Loading -> {
                         showSplashScreen = true
                     }
+
                     is Resource.Success -> {
                         showSplashScreen = false
                     }

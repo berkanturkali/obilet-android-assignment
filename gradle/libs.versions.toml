@@ -17,6 +17,7 @@ mockWebServer = "4.12.0"
 splashScreen = "1.0.1"
 androidXLifecycleViewModel = "2.7.0"
 androidXFragmentKtx = "1.6.2"
+androidXNavigation = "2.7.7"
 
 
 [libraries]
@@ -39,7 +40,8 @@ okhttp-mock-web-server = { group = "com.squareup.okhttp3", name = "mockwebserver
 androidx-core-splashScreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "splashScreen" }
 androidx-lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "androidXLifecycleViewModel" }
 androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "androidXFragmentKtx" }
-
+androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "androidXNavigation" }
+androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "androidXNavigation" }
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }

@@ -2,6 +2,7 @@ package com.obilet.android.assignment.core.network.di
 
 import com.obilet.android.assignment.core.network.BuildConfig
 import com.obilet.android.assignment.core.network.factory.RetrofitFactory
+import com.obilet.android.assignment.core.network.interceptor.TokenInterceptor
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -23,11 +24,15 @@ object RetrofitModule {
      * This provides a retrofit instance for the [BuildConfig.BASE_URL]
      */
     @[Provides Singleton Named(OBILET_RETROFIT_NAME)]
-    fun provideRetrofit(moshi: Moshi, okHttpClient: OkHttpClient): Retrofit {
+    fun provideRetrofit(
+        moshi: Moshi,
+        okHttpClient: OkHttpClient,
+        tokenInterceptor: TokenInterceptor,
+    ): Retrofit {
         return RetrofitFactory.createRetrofit(
             url = BuildConfig.BASE_URL,
             moshi = moshi,
-            client = okHttpClient
+            client = okHttpClient.newBuilder().addInterceptor(tokenInterceptor).build()
         )
     }
 

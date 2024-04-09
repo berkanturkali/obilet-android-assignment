@@ -49,6 +49,8 @@ dependencies {
     implementAll(
         libs.androidx.core.splashScreen,
         libs.androidx.lifecycle.viewmodel,
-        libs.androidx.fragment.ktx
+        libs.androidx.fragment.ktx,
+        libs.androidx.navigation.fragment.ktx,
+        libs.androidx.navigation.ui.ktx
     )
 }

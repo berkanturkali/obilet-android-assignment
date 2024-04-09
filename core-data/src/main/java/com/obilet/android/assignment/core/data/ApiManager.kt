@@ -88,7 +88,7 @@ object ApiManager {
             }
 
             else -> {
-                Resource.Error(text = UiText.StringResource(R.string.something_went_wrong))
+                Resource.Error(text = UiText.StringResource(R.string.something_went_wrong_please_try_again_later))
             }
         }
     }
