@@ -26,7 +26,7 @@ object ApiManager {
     inline fun <reified ResponseType, reified MappedResponseType> safeApiCall(
         noinline mapFromModel: ((ResponseType) -> MappedResponseType)? = null,
         dispatcher: CoroutineDispatcher = Dispatchers.IO,
-        crossinline apiCall: () -> Response<BaseResponseDTO<ResponseType>>
+        crossinline apiCall: suspend () -> Response<BaseResponseDTO<ResponseType>>
     ): Flow<Resource<MappedResponseType>> {
         return flow {
             try {
@@ -44,6 +44,12 @@ object ApiManager {
                             } ?: emit(
                                 Resource.Success(null)
                             )
+                        } else {
+                            emit(
+                                Resource.Error(
+                                    text = UiText.StringResource(R.string.something_went_wrong)
+                                )
+                            )
                         }
                     } ?: emit(
                         Resource.Error(
@@ -52,7 +58,6 @@ object ApiManager {
                         )
                     )
                 } else {
-
                     emit(
                         Resource.Error(
                             code = response.code(),
