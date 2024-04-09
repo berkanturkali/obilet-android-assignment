@@ -38,6 +38,6 @@ fun DependencyHandler.implementProject(projectLib: String) = add(
     "implementation", project(projectLib)
 )
 
-fun DependencyHandler.implementAllProjects(vararg projectLibs: String) {
+fun DependencyHandler.implementAllModules(vararg projectLibs: String) {
     projectLibs.forEach(::implementProject)
 }

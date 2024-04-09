@@ -1,4 +1,7 @@
 import OBiletBuildType.Companion.Release
+import com.obilet.android.assignment.Modules
+import com.obilet.android.assignment.implementAll
+import com.obilet.android.assignment.implementAllModules
 
 plugins {
     alias(libs.plugins.obilet.android.application)
@@ -34,4 +37,14 @@ hilt {
     enableAggregatingTask = true
 }
 
-dependencies {}
+dependencies {
+    implementAllModules(
+        Modules.CORE_MODEL,
+        Modules.CORE_NETWORK,
+        Modules.CORE_DATA,
+    )
+    implementAll(
+        libs.androidx.core.splashScreen,
+        libs.androidx.lifecycle.viewmodel
+    )
+}

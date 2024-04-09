@@ -1,7 +1,7 @@
 import OBiletBuildType.Companion.Debug
 import com.obilet.android.assignment.Modules
 import com.obilet.android.assignment.implementAll
-import com.obilet.android.assignment.implementAllProjects
+import com.obilet.android.assignment.implementAllModules
 import com.obilet.android.assignment.implementAllUnitTests
 
 plugins {
@@ -21,8 +21,9 @@ android {
 
 dependencies {
 
-    implementAllProjects(
+    implementAllModules(
         Modules.CORE_MODEL,
+        Modules.CORE_STORAGE
     )
 
     implementAll(
