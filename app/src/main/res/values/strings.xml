@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name" translatable="false">OBilet</string>
     <string name="okay">Tamam</string>
+    <string name="bus_tab_label">Otobüs Bileti</string>
+    <string name="flight_tab_label">Uçak Bileti</string>
 </resources>
