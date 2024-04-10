@@ -9,4 +9,8 @@
     <string name="today">Bugün</string>
     <string name="tomorrow">Yarın</string>
     <string name="find_ticket_button_label">Bileti Bul</string>
+    <string name="departure_label">Gidiş</string>
+    <string name="return_label">Dönüş</string>
+    <string name="add_passenger">Yolcu Ekle</string>
+    <string name="lorem_ipsum" translatable="false">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</string>
 </resources>

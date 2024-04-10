@@ -9,4 +9,7 @@
     <string name="today">Today</string>
     <string name="tomorrow">Tomorrow</string>
     <string name="find_ticket_button_label">Find Ticket</string>
+    <string name="departure_label">Departure</string>
+    <string name="return_label">Return</string>
+    <string name="add_passenger">Add Passenger</string>
 </resources>

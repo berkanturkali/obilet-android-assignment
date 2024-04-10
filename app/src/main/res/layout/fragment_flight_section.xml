@@ -118,6 +118,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
+
     <!-- endregion -->
 
     <com.google.android.material.card.MaterialCardView
@@ -149,8 +150,8 @@
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.OBilet.Button.Rounded" />
     </com.google.android.material.card.MaterialCardView>
 
-    <!-- region Date -->
 
+    <!-- region Date -->
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/dateCV"
@@ -158,68 +159,176 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        app:layout_constraintEnd_toEndOf="@+id/destinationCV"
-        app:layout_constraintStart_toStartOf="@+id/destinationCV"
-        app:layout_constraintTop_toBottomOf="@+id/destinationCV">
+        app:layout_constraintEnd_toEndOf="@id/destinationCV"
+        app:layout_constraintStart_toStartOf="@id/destinationCV"
+        app:layout_constraintTop_toBottomOf="@id/destinationCV">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="12dp">
+            android:layout_margin="16dp">
 
             <ImageView
                 android:id="@+id/dateIv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_calendar"
-                app:layout_constraintBottom_toBottomOf="@+id/dateTv"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/dateTv"
+                app:layout_constraintTop_toTopOf="parent"
                 app:tint="@color/icon_primary_color" />
 
             <TextView
-                android:id="@+id/dateLabelTv"
+                android:id="@+id/departureLabelTv"
                 style="@style/TextAppearance.AppCompat.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:fontFamily="@font/nunito_bold"
-                android:text="@string/date_label"
+                android:text="@string/departure_label"
                 android:textColor="@color/primary_color"
                 app:layout_constraintStart_toEndOf="@id/dateIv"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/dateTv"
+                android:id="@+id/dayOfMonthTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:textColor="@color/primary_text_color"
+                android:textSize="28sp"
+                app:layout_constraintStart_toStartOf="@id/departureLabelTv"
+                app:layout_constraintTop_toBottomOf="@id/departureLabelTv"
+                tools:text="18" />
+
+            <TextView
+                android:id="@+id/monthAndDayTv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/nunito_regular"
+                android:textColor="@color/primary_text_color"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/dayOfMonthTv"
+                app:layout_constraintEnd_toStartOf="@+id/dateDivider"
+                app:layout_constraintStart_toEndOf="@id/dayOfMonthTv"
+                app:layout_constraintTop_toTopOf="@id/dayOfMonthTv"
+                tools:text="Kasım\nPazartesi" />
+
+            <View
+                android:id="@+id/dateDivider"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:background="@color/divider_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/returnLabelTv"
                 style="@style/TextAppearance.AppCompat.Small"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/nunito_medium"
-                android:textColor="@color/primary_text_color"
-                app:layout_constraintStart_toStartOf="@id/dateLabelTv"
-                app:layout_constraintTop_toBottomOf="@id/dateLabelTv"
-                tools:text="1 Nisan 2018 Pazar" />
-
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/todayBtn"
-                style="@style/Theme.OBilet.DateButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="@string/today"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/nunito_bold"
+                android:text="@string/return_label"
+                android:textColor="@color/primary_color"
+                app:layout_constraintStart_toEndOf="@id/dateDivider"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/tomorrowBtn"
-                style="@style/Theme.OBilet.DateButtonStyle"
+            <TextView
+                android:id="@+id/returnDayOfMonthTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_semi_bold"
+                android:textColor="@color/primary_text_color"
+                android:textSize="28sp"
+                app:layout_constraintStart_toStartOf="@id/returnLabelTv"
+                app:layout_constraintTop_toBottomOf="@id/returnLabelTv"
+                tools:text="18" />
+
+            <TextView
+                android:id="@+id/returnMonthAndDayTv"
                 android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:text="@string/tomorrow"
-                app:layout_constraintEnd_toEndOf="@+id/todayBtn"
-                app:layout_constraintStart_toStartOf="@+id/todayBtn"
-                app:layout_constraintTop_toBottomOf="@id/todayBtn" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/nunito_regular"
+                android:textColor="@color/primary_text_color"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/returnDayOfMonthTv"
+                app:layout_constraintEnd_toStartOf="@id/addOrRemoveBtn"
+                app:layout_constraintStart_toEndOf="@id/returnDayOfMonthTv"
+                app:layout_constraintTop_toTopOf="@id/returnDayOfMonthTv"
+                tools:text="Kasım\nPazartesi" />
+
+            <ImageView
+                android:id="@+id/addOrRemoveBtn"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_add"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/icon_secondary_color" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- endregion -->
+
+
+    <!-- region Passenger -->
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/passengerCv"
+        style="@style/Theme.OBilet.FilterCardStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/dateCV"
+        app:layout_constraintStart_toStartOf="@+id/dateCV"
+        app:layout_constraintTop_toBottomOf="@+id/dateCV">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp">
+
+
+            <ImageView
+                android:id="@+id/passengerIv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_person"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/icon_primary_color" />
+
+            <TextView
+                android:id="@+id/passengerCountTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:fontFamily="@font/nunito_bold"
+                android:textColor="@color/primary_text_color"
+                app:layout_constraintBottom_toBottomOf="@id/passengerIv"
+                app:layout_constraintStart_toEndOf="@id/passengerIv"
+                app:layout_constraintTop_toTopOf="@id/passengerIv"
+                tools:text="1 YETİŞKİN" />
+
+            <TextView
+                android:id="@+id/addPassengerTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nunito_regular"
+                android:text="@string/add_passenger"
+                android:textColor="@color/primary_text_color_with_half_opacity"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
@@ -234,9 +343,9 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="64dp"
         android:text="@string/find_ticket_button_label"
-        app:layout_constraintEnd_toEndOf="@+id/dateCV"
-        app:layout_constraintStart_toStartOf="@+id/dateCV"
-        app:layout_constraintTop_toBottomOf="@+id/dateCV" />
+        app:layout_constraintEnd_toEndOf="@+id/passengerCv"
+        app:layout_constraintStart_toStartOf="@+id/passengerCv"
+        app:layout_constraintTop_toBottomOf="@+id/passengerCv" />
 
     <com.google.android.material.card.MaterialCardView
         style="@style/Theme.OBilet.FooterCardViewStyle"
@@ -259,5 +368,6 @@
             android:text="@string/lorem_ipsum"
             android:textColor="@color/primary_text_color" />
     </com.google.android.material.card.MaterialCardView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
