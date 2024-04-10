@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--region Origin -->
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/originCV"
+        style="@style/Theme.OBilet.FilterCardStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp">
+
+            <ImageView
+                android:id="@+id/originLocationIv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_location_outline"
+                app:layout_constraintBottom_toBottomOf="@+id/originTv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/originTv"
+                app:tint="@color/icon_primary_color" />
+
+            <TextView
+                android:id="@+id/originLabelTv"
+                style="@style/TextAppearance.AppCompat.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/nunito_bold"
+                android:text="@string/origin_label"
+                android:textColor="@color/primary_color"
+                app:layout_constraintStart_toEndOf="@id/originLocationIv"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/originTv"
+                style="@style/TextAppearance.AppCompat.Small"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito_medium"
+                android:textColor="@color/primary_text_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/originLabelTv"
+                app:layout_constraintTop_toBottomOf="@id/originLabelTv"
+                tools:text="İstanbul Avrupa" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- endregion -->
+
+    <!--region Destination -->
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/destinationCV"
+        style="@style/Theme.OBilet.FilterCardStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        app:layout_constraintEnd_toEndOf="@+id/originCV"
+        app:layout_constraintStart_toStartOf="@+id/originCV"
+        app:layout_constraintTop_toBottomOf="@+id/originCV">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp">
+
+            <ImageView
+                android:id="@+id/destinationLocationIv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_location"
+                app:layout_constraintBottom_toBottomOf="@+id/destinationTv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/destinationTv"
+                app:tint="@color/icon_primary_color" />
+
+            <TextView
+                android:id="@+id/destinationLabelTv"
+                style="@style/TextAppearance.AppCompat.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/nunito_bold"
+                android:text="@string/destination_label"
+                android:textColor="@color/primary_color"
+                app:layout_constraintStart_toEndOf="@id/destinationLocationIv"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/destinationTv"
+                style="@style/TextAppearance.AppCompat.Small"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito_medium"
+                android:textColor="@color/primary_text_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/destinationLabelTv"
+                app:layout_constraintTop_toBottomOf="@id/destinationLabelTv"
+                tools:text="Ankara" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- endregion -->
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="12dp"
+        android:backgroundTint="#88FFFFFF"
+        app:cardElevation="8dp"
+        app:layout_constraintBottom_toTopOf="@id/destinationCV"
+        app:layout_constraintEnd_toEndOf="@id/originCV"
+        app:layout_constraintTop_toBottomOf="@id/originCV"
+        app:strokeColor="@color/primary_text_color"
+        app:strokeWidth="1dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@android:color/transparent"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            app:icon="@drawable/ic_swap"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconTint="@color/primary_text_color"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.OBilet.Button.Rounded" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- region Date -->
+
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/dateCV"
+        style="@style/Theme.OBilet.FilterCardStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="@+id/destinationCV"
+        app:layout_constraintStart_toStartOf="@+id/destinationCV"
+        app:layout_constraintTop_toBottomOf="@+id/destinationCV">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp">
+
+            <ImageView
+                android:id="@+id/dateIv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_calendar"
+                app:layout_constraintBottom_toBottomOf="@+id/dateTv"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/dateTv"
+                app:tint="@color/icon_primary_color" />
+
+            <TextView
+                android:id="@+id/dateLabelTv"
+                style="@style/TextAppearance.AppCompat.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:fontFamily="@font/nunito_bold"
+                android:text="@string/date_label"
+                android:textColor="@color/primary_color"
+                app:layout_constraintStart_toEndOf="@id/dateIv"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/dateTv"
+                style="@style/TextAppearance.AppCompat.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/nunito_medium"
+                android:textColor="@color/primary_text_color"
+                app:layout_constraintStart_toStartOf="@id/dateLabelTv"
+                app:layout_constraintTop_toBottomOf="@id/dateLabelTv"
+                tools:text="1 Nisan 2018 Pazar" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/todayBtn"
+                style="@style/Theme.OBilet.DateButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="@string/today"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/tomorrowBtn"
+                style="@style/Theme.OBilet.DateButtonStyle"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:text="@string/tomorrow"
+                app:layout_constraintEnd_toEndOf="@+id/todayBtn"
+                app:layout_constraintStart_toStartOf="@+id/todayBtn"
+                app:layout_constraintTop_toBottomOf="@id/todayBtn" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+    <!-- endregion -->
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/findTicketBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="64dp"
+        android:fontFamily="@font/nunito_bold"
+        android:text="@string/find_ticket_button_label"
+        android:textColor="@color/on_primary"
+        app:backgroundTint="@color/primary_color"
+        app:cornerRadius="4dp"
+        app:layout_constraintEnd_toEndOf="@+id/dateCV"
+        app:layout_constraintStart_toStartOf="@+id/dateCV"
+        app:layout_constraintTop_toBottomOf="@+id/dateCV" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="48dp"
+        android:backgroundTint="@color/on_primary"
+        app:cardCornerRadius="0dp"
+        app:cardElevation="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/findTicketBtn"
+        app:strokeColor="@android:color/transparent"
+        app:strokeWidth="0dp">
+
+        <TextView
+            android:id="@+id/infoTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="16dp"
+            android:fontFamily="@font/nunito_medium"
+            android:gravity="center_horizontal"
+            android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. "
+            android:textColor="@color/primary_text_color" />
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

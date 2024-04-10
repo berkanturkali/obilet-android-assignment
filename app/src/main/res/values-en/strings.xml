@@ -3,4 +3,10 @@
     <string name="okay">Okay</string>
     <string name="bus_tab_label">Bus Ticket</string>
     <string name="flight_tab_label">Flight Ticket</string>
+    <string name="origin_label">From</string>
+    <string name="destination_label">To</string>
+    <string name="date_label">Date</string>
+    <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="find_ticket_button_label">Find Ticket</string>
 </resources>

@@ -14,6 +14,27 @@
 
     <style name="Theme.OBilet.TabTextStyle" parent="@android:style/TextAppearance.Widget.TabWidget">
         <item name="fontFamily">@font/nunito_regular</item>
+        <item name="android:textSize">11sp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.OBilet.Button.Rounded" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="Theme.OBilet.DateButtonStyle" parent="@style/Widget.Material3.Button.OutlinedButton">
+        <item name="fontFamily">@font/nunito_semi_bold</item>
         <item name="android:textSize">12sp</item>
+        <item name="cornerRadius">4dp</item>
+        <item name="backgroundTint">@color/bus_date_button_background_color</item>
+        <item name="android:textColor">@color/bus_date_button_text_color</item>
+    </style>
+
+    <style name="Theme.OBilet.FilterCardStyle">
+        <item name="background">@android:color/transparent</item>
+        <item name="android:backgroundTint">@color/on_primary</item>
+        <item name="cardCornerRadius">4dp</item>
+        <item name="strokeWidth">0dp</item>
+        <item name="cardElevation">2dp</item>
     </style>
 </resources>

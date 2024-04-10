@@ -11,4 +11,5 @@
     <color name="on_primary">@color/white</color>
     <color name="button_text_color">@color/white</color>
     <color name="background_color">#F5F5F5</color>
+    <color name="icon_primary_color">#C2C2C2</color>
 </resources>
