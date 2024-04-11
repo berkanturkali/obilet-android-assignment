@@ -6,7 +6,7 @@ androidXConstraintLayout = "2.1.4"
 junit4 = "4.13.2"
 androidXJunit = "1.1.5"
 androidXEspresso = "3.5.1"
-kotlin = "1.9.0"
+kotlin = "1.9.22"
 androidGradlePlugin = "8.1.4"
 retrofit = "2.9.0"
 okhttp = "4.12.0"
@@ -20,6 +20,7 @@ androidXFragmentKtx = "1.6.2"
 androidXNavigation = "2.7.7"
 androidXComposeBom = "2024.04.00"
 androidXComposeCompiler = "1.5.8"
+androidXComposeConstraintLayout = "1.0.1"
 
 
 [libraries]
@@ -49,6 +50,7 @@ androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
 androidx-compose-material = { group = "androidx.compose.material", name = "material" }
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-compose-constraint-layout = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "androidXComposeConstraintLayout" }
 
 
 

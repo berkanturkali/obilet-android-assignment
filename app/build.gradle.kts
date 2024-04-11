@@ -54,6 +54,7 @@ dependencies {
         libs.androidx.navigation.fragment.ktx,
         libs.androidx.navigation.ui.ktx,
         libs.androidx.compose.ui,
-        libs.androidx.compose.material
+        libs.androidx.compose.material,
+        libs.androidx.compose.constraint.layout
     )
 }
