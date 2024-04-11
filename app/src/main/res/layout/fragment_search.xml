@@ -43,31 +43,18 @@
         app:tabMode="fixed"
         app:tabRippleColor="@null"
         app:tabSelectedTextColor="@color/on_primary"
-        app:tabTextAppearance="@style/Theme.OBilet.TabTextStyle">
+        app:tabTextAppearance="@style/Theme.OBilet.TabTextStyle" />
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:icon="@drawable/ic_bus"
-            android:text="@string/bus_tab_label" />
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:icon="@drawable/ic_plane"
-            android:text="@string/flight_tab_label" />
-
-    </com.google.android.material.tabs.TabLayout>
 
     <androidx.viewpager2.widget.ViewPager2
-        android:layout_width="0dp"
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tabLayout">
+        app:layout_constraintTop_toBottomOf="@id/tabLayout" />
 
-    </androidx.viewpager2.widget.ViewPager2>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

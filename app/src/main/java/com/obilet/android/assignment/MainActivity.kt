@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.button.MaterialButton
 import com.obilet.android.assignment.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         subscribeObservers()
+        setupNavigation()
         splashScreen.apply {
             setKeepOnScreenCondition {
                 viewModel.showSplashScreen
@@ -51,9 +53,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupNavigation() {
-//        val navHostFragment =
-//            supportFragmentManager.findFragmentById(R.id.nav_host_container) as NavHostFragment
-//        navController = navHostFragment.navController
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_container) as NavHostFragment
+        navController = navHostFragment.navController
     }
 
     private fun showErrorDialog(message: String) {
