@@ -1,11 +1,11 @@
 package com.obilet.android.assignment.core.network.model.request.base
 
-import com.obilet.android.assignment.core.network.model.request.device_session.DeviceSession
+import com.obilet.android.assignment.core.network.model.request.device_session.DeviceSessionDTO
 import com.squareup.moshi.Json
 
 data class BaseRequestModelDTO<T>(
     @Json(name = "device-session")
-    val deviceSession: DeviceSession? = null,
+    val deviceSessionDTO: DeviceSessionDTO? = null,
     @Json(name = "date")
     var date: String? = null,
     @Json(name = "language")
