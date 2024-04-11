@@ -1,5 +1,7 @@
 package com.obilet.android.assignment.core.network.utils
 
+import com.obilet.android.assignment.core.network.model.request.base.BaseRequestModelDTO
+import com.obilet.android.assignment.core.network.model.request.device_session.DeviceSessionDTO
 import com.obilet.android.assignment.core.network.model.request.get_session.Application
 import com.obilet.android.assignment.core.network.model.request.get_session.GetSessionRequestModel
 
@@ -12,5 +14,12 @@ object DummyData {
             version = "3.1.0.0",
             equipmentId = "DD2A0857-7C7D-4376-A83B-E045435E82BB"
         )
+    )
+
+    val getBusLocationsRequestModel = BaseRequestModelDTO<String?>(
+        data = "ankara",
+        deviceSessionDTO = DeviceSessionDTO(),
+        date = "",
+        language = "",
     )
 }

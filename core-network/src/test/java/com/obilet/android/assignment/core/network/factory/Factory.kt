@@ -2,7 +2,6 @@ package com.obilet.android.assignment.core.network.factory
 
 import com.google.common.io.Resources
 import com.obilet.android.assignment.core.network.model.response.Status
-import com.obilet.android.assignment.core.network.model.response.base.BaseResponseDTO
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.Types

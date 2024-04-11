@@ -11,25 +11,11 @@ import com.obilet.android.assignment.core.network.model.response.get_session.Get
 import com.obilet.android.assignment.core.network.utils.DummyData
 import com.obilet.android.assignment.core.network.utils.UrlConstants
 import kotlinx.coroutines.runBlocking
-import okhttp3.mockwebserver.MockWebServer
-import org.junit.After
-import org.junit.Before
+import okhttp3.mockwebserver.Dispatcher
 import org.junit.Test
 
-class ClientRemoteDataSourceImplTest {
-
-    private lateinit var mockWebServer: MockWebServer
-    private lateinit var dataSource: ClientRemoteDataSource
-
-    @Before
-    fun setup() {
-        mockWebServer = MockWebServer()
-        mockWebServer.apply {
-            dispatcher = ClientDispatcher()
-            start()
-        }
-        dataSource = ClientRemoteDataSourceImpl(makeApiService(mockWebServer))
-    }
+class ClientRemoteDataSourceImplTest :
+    BaseDataSourceImplTest<ClientRemoteDataSource, ClientRemoteDataSourceImpl>() {
 
     @Test
     fun `check that calling getSession makes a POST request`() = runBlocking {
@@ -41,15 +27,20 @@ class ClientRemoteDataSourceImplTest {
     fun `check that getSession returns correct data`() = runBlocking {
         val response = dataSource.getSession(DummyData.getSessionRequestModel)
         val expectedResponse =
-            responseAdapter<BaseResponseDTO<GetSessionDTO>, GetSessionDTO>().fromJson(getJson(UrlConstants.GET_SESSION_SUCCESS_RESPONSE))
+            responseAdapter<BaseResponseDTO<GetSessionDTO>, GetSessionDTO>().fromJson(
+                getJson(
+                    UrlConstants.GET_SESSION_SUCCESS_RESPONSE
+                )
+            )
         Truth.assertThat(expectedResponse).isEqualTo(response.body())
     }
 
 
-    @After
-    fun tearDown() {
-        mockWebServer.shutdown()
+    override fun setDispatcher(): Dispatcher {
+        return ClientDispatcher()
     }
 
-
+    override fun initializeDataSource(): ClientRemoteDataSourceImpl {
+        return ClientRemoteDataSourceImpl(makeApiService(mockWebServer))
+    }
 }
