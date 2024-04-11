@@ -12,7 +12,8 @@ class BusLocationRemoteResponseMapper @Inject constructor() :
             id = model.id,
             name = model.name,
             latitude = model.geoLocation?.latitude,
-            longitude = model.geoLocation?.longitude
+            longitude = model.geoLocation?.longitude,
+            cityId = model.cityId
         )
     }
 }

@@ -40,5 +40,9 @@ gradlePlugin {
             id = "obilet.android.hilt"
             implementationClass = "AndroidHiltConventionPlugin"
         }
+        register("androidApplicationCompose") {
+            id = "obilet.android.application.compose"
+            implementationClass = "AndroidApplicationComposeConventionPlugin"
+        }
     }
 }

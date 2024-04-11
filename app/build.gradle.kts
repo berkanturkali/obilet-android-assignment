@@ -6,6 +6,7 @@ import com.obilet.android.assignment.implementAllModules
 plugins {
     alias(libs.plugins.obilet.android.application)
     alias(libs.plugins.obilet.android.hilt)
+    alias(libs.plugins.obilet.android.application.compose)
 }
 
 android {
@@ -51,6 +52,8 @@ dependencies {
         libs.androidx.lifecycle.viewmodel,
         libs.androidx.fragment.ktx,
         libs.androidx.navigation.fragment.ktx,
-        libs.androidx.navigation.ui.ktx
+        libs.androidx.navigation.ui.ktx,
+        libs.androidx.compose.ui,
+        libs.androidx.compose.material
     )
 }

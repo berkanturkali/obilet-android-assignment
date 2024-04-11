@@ -5,4 +5,5 @@ data class BusLocation(
     val name: String? = null,
     val latitude: Double? = null,
     val longitude: Double? = null,
+    val cityId: Int? = null,
 )

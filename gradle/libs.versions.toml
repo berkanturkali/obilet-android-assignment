@@ -18,6 +18,8 @@ splashScreen = "1.0.1"
 androidXLifecycleViewModel = "2.7.0"
 androidXFragmentKtx = "1.6.2"
 androidXNavigation = "2.7.7"
+androidXComposeBom = "2024.04.00"
+androidXComposeCompiler = "1.5.8"
 
 
 [libraries]
@@ -42,6 +44,13 @@ androidx-lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle
 androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "androidXFragmentKtx" }
 androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "androidXNavigation" }
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "androidXNavigation" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidXComposeBom" }
+androidx-compose-ui = { group = "androidx.compose.ui", name = "ui" }
+androidx-compose-material = { group = "androidx.compose.material", name = "material" }
+androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+
+
 
 # Dependencies of the included build-logic
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
@@ -58,3 +67,4 @@ obilet-android-application = { id = "obilet.android.application", version = "uns
 obilet-android-library = { id = "obilet.android.library", version = "unspecified" }
 com-android-library = { id = "com.android.library", version.ref = "androidGradlePlugin" }
 obilet-android-hilt = { id = "obilet.android.hilt", version = "unspecified" }
+obilet-android-application-compose = { id = "obilet.android.application.compose", version = "unspecified" }
