@@ -5,13 +5,11 @@ import android.content.SharedPreferences
 import com.obilet.android.assignment.core.model.getsession.Session
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
-import javax.inject.Singleton
 
 /**
- * This class manages operations related to
+ * This object manages operations related to
  * the session and the device ids of the user.
  */
-@Singleton
 class SessionStorageManager @Inject constructor(@ApplicationContext context: Context) {
 
     companion object {
