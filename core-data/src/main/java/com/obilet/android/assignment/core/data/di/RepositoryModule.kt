@@ -4,6 +4,8 @@ import com.obilet.android.assignment.core.data.repository.client.abstraction.Cli
 import com.obilet.android.assignment.core.data.repository.client.implementation.ClientRepositoryImpl
 import com.obilet.android.assignment.core.data.repository.ip.abstraction.IpRepository
 import com.obilet.android.assignment.core.data.repository.ip.implementation.IpRepositoryImpl
+import com.obilet.android.assignment.core.data.repository.location.abstraction.LocationRepository
+import com.obilet.android.assignment.core.data.repository.location.implementation.LocationRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -17,4 +19,7 @@ interface RepositoryModule {
 
     @get:Binds
     val IpRepositoryImpl.ipRepository: IpRepository
+
+    @get:Binds
+    val LocationRepositoryImpl.locationRepository: LocationRepository
 }
