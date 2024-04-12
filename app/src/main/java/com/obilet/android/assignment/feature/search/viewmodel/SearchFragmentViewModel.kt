@@ -35,6 +35,16 @@ class SearchFragmentViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.Main) {
             locationRepository.getBusLocations(query).collect { resource ->
                 _busLocations.value = resource
+                if (resource is Resource.Success) {
+                    val locations = resource.data
+                    if (locations!!.size >= 2) {
+                        val originAndDestinationPair =
+                            findDefaultLocationsByCityId(locations)
+                        if (originAndDestinationPair.first != null && originAndDestinationPair.second != null) {
+                            setOriginAndDestination(originAndDestinationPair)
+                        }
+                    }
+                }
             }
         }
     }

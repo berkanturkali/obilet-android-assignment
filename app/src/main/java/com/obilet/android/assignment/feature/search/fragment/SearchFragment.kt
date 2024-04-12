@@ -70,17 +70,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
                 }
 
                 is Resource.Success -> {
-                    if (!resource.data.isNullOrEmpty()) {
-                        showOrHideMainContent(show = true)
-                        val locations = resource.data
-                        if (locations!!.size >= 2) {
-                            val originAndDestinationPair =
-                                viewModel.findDefaultLocationsByCityId(locations)
-                            if (originAndDestinationPair.first != null && originAndDestinationPair.second != null) {
-                                viewModel.setOriginAndDestination(originAndDestinationPair)
-                            }
-                        }
-                    }
+                    showOrHideMainContent(show = true)
                 }
             }
         }

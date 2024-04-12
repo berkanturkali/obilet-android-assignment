@@ -13,4 +13,6 @@
     <string name="return_label">Return</string>
     <string name="add_passenger">Add Passenger</string>
     <string name="try_again">Try Again</string>
+    <string name="add_return_date">Add Date</string>
+    <string name="flight_passenger_adult">%1$s ADULT</string>
 </resources>
