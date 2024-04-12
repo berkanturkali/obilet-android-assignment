@@ -17,4 +17,5 @@
     <string name="flight_section_month_and_day" translatable="false">%1$s\n%2$s</string>
     <string name="add_return_date">Dönüş Ekle</string>
     <string name="flight_passenger_adult">%1$s YETİŞKİN</string>
+    <string name="passenger">YOLCU</string>
 </resources>
