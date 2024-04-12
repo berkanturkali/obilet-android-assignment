@@ -21,7 +21,6 @@ fun PassengerFilterItem(
     filter: String,
     modifier: Modifier = Modifier
 ) {
-
     Row(
         modifier = modifier
             .fillMaxWidth()
