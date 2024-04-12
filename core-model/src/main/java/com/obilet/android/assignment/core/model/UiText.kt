@@ -16,4 +16,5 @@ sealed class UiText {
             is StringResource -> context.getString(resId, *args)
         }
     }
+
 }

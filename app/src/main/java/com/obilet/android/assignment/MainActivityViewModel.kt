@@ -13,6 +13,7 @@ import com.obilet.android.assignment.core.model.UiText
 import com.obilet.android.assignment.core.network.model.request.get_session.Application
 import com.obilet.android.assignment.core.network.model.request.get_session.Connection
 import com.obilet.android.assignment.core.network.model.request.get_session.GetSessionRequestModel
+import com.obilet.android.assignment.core.storage.SessionStorageManager
 import com.obilet.android.assignment.usecase.GetUniqueDeviceIdentifierUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -24,7 +25,8 @@ import javax.inject.Inject
 class MainActivityViewModel @Inject constructor(
     private val ipRepo: IpRepository,
     private val clientRepo: ClientRepository,
-    private val getUniqueDeviceIdentifier: GetUniqueDeviceIdentifierUseCase
+    private val getUniqueDeviceIdentifier: GetUniqueDeviceIdentifierUseCase,
+    private val sessionStorageManager: SessionStorageManager,
 ) : ViewModel() {
 
     var showSplashScreen = true
@@ -32,6 +34,10 @@ class MainActivityViewModel @Inject constructor(
     private val _showErrorDialog = MutableLiveData<UiText?>()
 
     val showErrorDialog: LiveData<UiText?> get() = _showErrorDialog
+
+    private val _setupNavigation = MutableLiveData<Boolean>()
+
+    val setupNavigation: LiveData<Boolean> get() = _setupNavigation
 
     init {
         getOutboundIPAddress()
@@ -76,7 +82,7 @@ class MainActivityViewModel @Inject constructor(
                         equipmentId = getUniqueDeviceIdentifier()
                     ),
                 )
-            ).collectLatest { resource ->
+            ).collect { resource ->
                 when (resource) {
                     is Resource.Error -> {
                         showSplashScreen = false
@@ -88,7 +94,11 @@ class MainActivityViewModel @Inject constructor(
                     }
 
                     is Resource.Success -> {
-                        showSplashScreen = false
+                        resource.data?.let {
+                            sessionStorageManager.cacheSessionAndDeviceId(session = it)
+                            _setupNavigation.value = true
+                        }
+
                     }
                 }
 

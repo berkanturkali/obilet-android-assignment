@@ -29,9 +29,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         splashScreen = installSplashScreen()
         binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        subscribeObservers()
-        setupNavigation()
         splashScreen.apply {
             setKeepOnScreenCondition {
                 viewModel.showSplashScreen
@@ -40,6 +37,8 @@ class MainActivity : AppCompatActivity() {
                 it.remove()
             }
         }
+        setContentView(binding.root)
+        subscribeObservers()
 
     }
 
@@ -50,12 +49,20 @@ class MainActivity : AppCompatActivity() {
                 showErrorDialog(it)
             }
         }
+
+        viewModel.setupNavigation.observe(this) { setupNavigation ->
+            if (setupNavigation) {
+                setupNavigation()
+                viewModel.showSplashScreen = false
+            }
+        }
     }
 
     private fun setupNavigation() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_container) as NavHostFragment
         navController = navHostFragment.navController
+        navController.setGraph(R.navigation.app_graph)
     }
 
     private fun showErrorDialog(message: String) {

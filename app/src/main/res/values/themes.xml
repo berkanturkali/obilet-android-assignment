@@ -27,8 +27,9 @@
         <item name="fontFamily">@font/nunito_semi_bold</item>
         <item name="android:textSize">12sp</item>
         <item name="cornerRadius">4dp</item>
-        <item name="backgroundTint">@color/bus_date_button_background_color</item>
-        <item name="android:textColor">@color/bus_date_button_text_color</item>
+        <item name="backgroundTint">@color/on_primary</item>
+        <item name="android:textColor">@color/button_color</item>
+        <item name="strokeColor">@color/button_color</item>
     </style>
 
     <style name="Theme.OBilet.FilterCardStyle">

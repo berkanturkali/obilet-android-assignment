@@ -19,16 +19,16 @@ import androidx.compose.ui.unit.dp
 fun Modifier.shimmerModifier(
     widthOfShadowBrush: Int = 300,
     angleOfAxisY: Float = 270f,
-    durationMillis: Int = 1000,
+    durationMillis: Int = 1500,
     shape: Shape = RoundedCornerShape(16.dp)
 ): Modifier {
     return composed {
         val shimmerColors = listOf(
-            Color.LightGray.copy(alpha = 0.3f),
-            Color.LightGray.copy(alpha = 0.5f),
+            Color.LightGray.copy(alpha = 0.2f),
+            Color.LightGray.copy(alpha = 0.4f),
             Color.LightGray.copy(alpha = 1.0f),
-            Color.LightGray.copy(alpha = 0.5f),
-            Color.LightGray.copy(alpha = 0.3f),
+            Color.LightGray.copy(alpha = 0.4f),
+            Color.LightGray.copy(alpha = 0.2f),
         )
 
         val transition = rememberInfiniteTransition(label = "")

@@ -7,20 +7,25 @@ import androidx.lifecycle.viewModelScope
 import com.obilet.android.assignment.core.data.repository.location.abstraction.LocationRepository
 import com.obilet.android.assignment.core.model.Resource
 import com.obilet.android.assignment.core.model.bus_location.BusLocation
+import com.obilet.android.assignment.feature.search.usecase.FindDefaultLocationsByCityIdUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SearchFragmentViewModel @Inject constructor(
-    private val locationRepository: LocationRepository
+    private val locationRepository: LocationRepository,
+    private val findDefaultLocationsByCityIdUseCase: FindDefaultLocationsByCityIdUseCase
 ) : ViewModel() {
 
     private val _busLocations = MutableLiveData<Resource<List<BusLocation>>>()
 
     val busLocations: LiveData<Resource<List<BusLocation>>> get() = _busLocations
+
+    private val _originAndDestinationPair = MutableLiveData<Pair<BusLocation?, BusLocation?>>()
+
+    val originAndDestinationPair: LiveData<Pair<BusLocation?, BusLocation?>> get() = _originAndDestinationPair
 
     init {
         getBusLocations(null)
@@ -28,9 +33,17 @@ class SearchFragmentViewModel @Inject constructor(
 
     fun getBusLocations(query: String?) {
         viewModelScope.launch(Dispatchers.Main) {
-            locationRepository.getBusLocations(query).onEach {
-                _busLocations.value = it
+            locationRepository.getBusLocations(query).collect { resource ->
+                _busLocations.value = resource
             }
         }
+    }
+
+    fun findDefaultLocationsByCityId(locationList: List<BusLocation>): Pair<BusLocation?, BusLocation?> {
+        return findDefaultLocationsByCityIdUseCase(locationList)
+    }
+
+    fun setOriginAndDestination(originAndDestinationPair: Pair<BusLocation?, BusLocation?>) {
+        _originAndDestinationPair.value = originAndDestinationPair
     }
 }

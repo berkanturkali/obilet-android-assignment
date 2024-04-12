@@ -2,6 +2,7 @@ import OBiletBuildType.Companion.Release
 import com.obilet.android.assignment.Modules
 import com.obilet.android.assignment.implementAll
 import com.obilet.android.assignment.implementAllModules
+import com.obilet.android.assignment.implementAllUnitTests
 
 plugins {
     alias(libs.plugins.obilet.android.application)
@@ -46,6 +47,7 @@ dependencies {
         Modules.CORE_MODEL,
         Modules.CORE_NETWORK,
         Modules.CORE_DATA,
+        Modules.CORE_STORAGE,
     )
     implementAll(
         libs.androidx.core.splashScreen,
@@ -56,5 +58,9 @@ dependencies {
         libs.androidx.compose.ui,
         libs.androidx.compose.material,
         libs.androidx.compose.constraint.layout
+    )
+
+    implementAllUnitTests(
+        libs.google.truth
     )
 }

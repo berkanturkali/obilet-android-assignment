@@ -127,8 +127,8 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/switchDirectionsCv"
-            android:layout_width="22dp"
-            android:layout_height="22dp"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
             android:layout_marginEnd="12dp"
             android:backgroundTint="#88FFFFFF"
             app:cardElevation="8dp"
@@ -206,25 +206,39 @@
                     app:layout_constraintTop_toBottomOf="@id/dateLabelTv"
                     tools:text="1 Nisan 2018 Pazar" />
 
+                <View
+                    android:id="@+id/dateDivider"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="24dp"
+                    android:background="@color/divider_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/dateTv" />
+
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/todayBtn"
                     style="@style/Theme.OBilet.DateButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="40dp"
+                    android:layout_marginTop="8dp"
                     android:text="@string/today"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toStartOf="@+id/dateDivider"
+                    app:layout_constraintTop_toBottomOf="@+id/dateDivider" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/tomorrowBtn"
                     style="@style/Theme.OBilet.DateButtonStyle"
                     android:layout_width="0dp"
                     android:layout_height="40dp"
+                    android:layout_marginStart="16dp"
                     android:text="@string/tomorrow"
-                    app:layout_constraintEnd_toEndOf="@+id/todayBtn"
-                    app:layout_constraintStart_toStartOf="@+id/todayBtn"
-                    app:layout_constraintTop_toBottomOf="@id/todayBtn" />
+                    app:layout_constraintBottom_toBottomOf="@id/todayBtn"
+                    app:layout_constraintStart_toEndOf="@id/todayBtn"
+                    app:layout_constraintTop_toTopOf="@+id/todayBtn" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
