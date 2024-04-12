@@ -7,6 +7,7 @@ import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
@@ -49,10 +50,12 @@ fun PassengerCounter(
                     count -= 1
                 }
             },
-            modifier = Modifier.background(
-                color = colorResource(id = R.color.button_color),
-                shape = CircleShape
-            )
+            modifier = Modifier
+                .background(
+                    color = colorResource(id = R.color.button_color),
+                    shape = CircleShape
+                )
+                .size(28.dp)
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_remove),
@@ -94,10 +97,12 @@ fun PassengerCounter(
                     count += 1
                 }
             },
-            modifier = Modifier.background(
-                color = colorResource(id = R.color.button_color),
-                shape = CircleShape
-            )
+            modifier = Modifier
+                .background(
+                    color = colorResource(id = R.color.button_color),
+                    shape = CircleShape
+                )
+                .size(28.dp)
         ) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_plus),
