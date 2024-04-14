@@ -1,6 +1,8 @@
+import com.obilet.android.assignment.implementAll
+
 plugins {
-    alias(libs.plugins.com.android.library)
-    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.obilet.android.library)
+    alias(libs.plugins.obilet.android.hilt)
 }
 
 android {
@@ -13,4 +15,11 @@ android {
     }
 }
 
-dependencies {}
+dependencies {
+    implementAll(
+        libs.androidx.room.ktx,
+        libs.androidx.room.runtime
+    )
+
+    kapt(libs.androidx.room.compiler)
+}

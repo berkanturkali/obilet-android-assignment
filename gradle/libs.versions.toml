@@ -21,6 +21,7 @@ androidXNavigation = "2.7.7"
 androidXComposeBom = "2024.04.00"
 androidXComposeCompiler = "1.5.8"
 androidXComposeConstraintLayout = "1.0.1"
+androidXRoom = "2.6.1"
 
 
 [libraries]
@@ -51,6 +52,9 @@ androidx-compose-material = { group = "androidx.compose.material", name = "mater
 androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-compose-constraint-layout = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "androidXComposeConstraintLayout" }
+androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidXRoom" }
+androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "androidXRoom" }
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidXRoom" }
 
 
 
