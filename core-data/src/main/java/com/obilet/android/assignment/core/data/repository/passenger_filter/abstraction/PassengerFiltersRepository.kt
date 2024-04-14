@@ -4,7 +4,7 @@ import com.obilet.android.assignment.core.model.flight_section.PassengerFilter
 import kotlinx.coroutines.flow.Flow
 
 interface PassengerFiltersRepository {
-    suspend fun insertOrUpdateFilterList(filterList: List<PassengerFilter>): Long
+    suspend fun insertOrUpdateFilterList(filterList: List<PassengerFilter>)
 
     fun getPassengerFilters(): Flow<List<PassengerFilter>>
 

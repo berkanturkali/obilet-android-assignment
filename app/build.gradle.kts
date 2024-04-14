@@ -58,7 +58,8 @@ dependencies {
         libs.androidx.navigation.ui.ktx,
         libs.androidx.compose.ui,
         libs.androidx.compose.material,
-        libs.androidx.compose.constraint.layout
+        libs.androidx.compose.constraint.layout,
+        libs.androidx.compose.runtime.livedata
     )
 
     implementAllUnitTests(

@@ -15,10 +15,15 @@ import com.obilet.android.assignment.feature.base.BaseFragment
 import com.obilet.android.assignment.feature.flight_section.viewmodel.FlightSectionFragmentViewModel
 import com.obilet.android.assignment.feature.search.viewmodel.SearchFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Locale
 
 @AndroidEntryPoint
 class FlightSectionFragment :
     BaseFragment<FragmentFlightSectionBinding>(FragmentFlightSectionBinding::inflate) {
+
+    companion object {
+        private const val ENGLISH_LANG = "en"
+    }
 
     private val searchFragmentViewModel by viewModels<SearchFragmentViewModel>(ownerProducer = { requireParentFragment() })
 
@@ -30,8 +35,7 @@ class FlightSectionFragment :
 
     private val rotateAnimation by lazy {
         binding.switchDirectionsBtn.getSpringAnimationForTheView(
-            DynamicAnimation.ROTATION,
-            SpringForce.STIFFNESS_LOW
+            DynamicAnimation.ROTATION, SpringForce.STIFFNESS_LOW
         )
     }
     private val slideInLeftOrigin by lazy {
@@ -79,9 +83,23 @@ class FlightSectionFragment :
             setVisibilityOfReturnDate(returnDate != null)
         }
 
-        viewModel.passengerCount.observe(viewLifecycleOwner) { count ->
-            binding.passengerTv.text =
-                getString(R.string.flight_passenger_adult, count.toString())
+        viewModel.passengerCount.observe(viewLifecycleOwner) { passengers ->
+            val passengerText = passengers.joinToString(", ") {
+                val (title, count) = it
+                val modifiedTitle = viewModel.removeParenthesesFromTheTitle(getString(title))
+                if (Locale.getDefault().language == ENGLISH_LANG) {
+                    "$count ${
+                        viewModel.makeTheTitlePluralIfTheCountIsGreaterThanOne(
+                            count,
+                            modifiedTitle
+                        )
+                    }"
+                } else {
+                    "$count $modifiedTitle"
+                }
+            }
+            binding.passengerTv.text = passengerText
+
         }
     }
 
@@ -125,8 +143,7 @@ class FlightSectionFragment :
             val (origin, destination) = searchFragmentViewModel.originAndDestinationPair.value!!
             searchFragmentViewModel.setOriginAndDestination(
                 originAndDestinationPair = searchFragmentViewModel.originAndDestinationPair.value!!.copy(
-                    first = destination,
-                    origin
+                    first = destination, origin
                 )
             )
         }
@@ -178,3 +195,5 @@ class FlightSectionFragment :
     }
 
 }
+
+

@@ -22,6 +22,7 @@ androidXComposeBom = "2024.04.00"
 androidXComposeCompiler = "1.5.8"
 androidXComposeConstraintLayout = "1.0.1"
 androidXRoom = "2.6.1"
+androidXComposeLiveData = "1.6.1"
 
 
 [libraries]
@@ -55,6 +56,7 @@ androidx-compose-constraint-layout = { group = "androidx.constraintlayout", name
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "androidXRoom" }
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "androidXRoom" }
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidXRoom" }
+androidx-compose-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "androidXComposeLiveData" }
 
 
 

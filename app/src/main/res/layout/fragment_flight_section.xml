@@ -328,12 +328,16 @@
 
                 <TextView
                     android:id="@+id/passengerTv"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:fontFamily="@font/nunito_bold"
+                    android:layout_marginEnd="8dp"
+                    android:maxLines="1"
+                    android:ellipsize="end"
                     android:textColor="@color/primary_text_color"
                     app:layout_constraintBottom_toBottomOf="@id/passengerIv"
+                    app:layout_constraintEnd_toStartOf="@+id/addPassengerTv"
                     app:layout_constraintStart_toEndOf="@id/passengerIv"
                     app:layout_constraintTop_toTopOf="@id/passengerIv"
                     tools:text="1 YETİŞKİN" />

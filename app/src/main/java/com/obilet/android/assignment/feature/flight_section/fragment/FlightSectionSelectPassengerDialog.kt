@@ -4,14 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.obilet.android.assignment.core.model.flight_section.PassengerFilter
 import com.obilet.android.assignment.databinding.DialogFlightSectionSelectPassengerBinding
 import com.obilet.android.assignment.feature.flight_section.component.PassengerFilterList
+import com.obilet.android.assignment.feature.flight_section.component.PassengerFilterListLoadingView
 import com.obilet.android.assignment.feature.flight_section.viewmodel.FlightSectionSelectPassengerDialogViewModel
-import com.obilet.android.assignment.utils.setNavigationResult
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -32,8 +33,9 @@ class FlightSectionSelectPassengerDialog : BottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        subscribeObservers()
         setClickListeners()
+        subscribeObservers()
+
     }
 
     private fun subscribeObservers() {
@@ -100,6 +102,20 @@ class FlightSectionSelectPassengerDialog : BottomSheetDialogFragment() {
                     }
                 )
             }
+
+        }
+
+        viewModel.showLoadingView.observe(viewLifecycleOwner) { show ->
+            if (show) {
+                binding.passengerListLoadingView.apply {
+                    setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+                    setContent {
+                        PassengerFilterListLoadingView()
+                    }
+                }
+            } else {
+                binding.passengerListLoadingView.visibility = View.GONE
+            }
         }
     }
 
@@ -162,6 +178,7 @@ class FlightSectionSelectPassengerDialog : BottomSheetDialogFragment() {
 
     private fun setClickListeners() {
         binding.closeIb.setOnClickListener {
+            viewModel.saveFilters()
             findNavController().navigateUp()
         }
     }

@@ -14,9 +14,9 @@ class PassengerFiltersRepositoryImpl @Inject constructor(
     private val passengerFilterEntityToPassengerFilterMapper: PassengerFilterEntityToPassengerFilterMapper,
     private val passengerFilterToPassengerFilterEntityMapper: PassengerFilterToPassengerFilterEntityMapper,
 ) : PassengerFiltersRepository {
-    override suspend fun insertOrUpdateFilterList(filterList: List<PassengerFilter>): Long {
+    override suspend fun insertOrUpdateFilterList(filterList: List<PassengerFilter>) {
         val entityList = passengerFilterToPassengerFilterEntityMapper.mapModelList(filterList)
-        return passengerFiltersDao.insertOrUpdateFilterList(entityList)
+        passengerFiltersDao.insertOrUpdateFilterList(entityList)
     }
 
     override fun getPassengerFilters(): Flow<List<PassengerFilter>> {
