@@ -107,7 +107,7 @@ fun PassengerCounter(
                     text = targetCount.toString(),
                     fontFamily = FontFamily(Font(R.font.nunito_semi_bold)),
                     color = colorResource(id = R.color.on_primary),
-                    fontSize = 16.sp,
+                    fontSize = 14.sp,
                 )
             }
         }

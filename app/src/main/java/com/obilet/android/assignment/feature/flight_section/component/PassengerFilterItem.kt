@@ -11,8 +11,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.obilet.android.assignment.R
@@ -28,6 +31,31 @@ fun PassengerFilterItem(
     setIncreaseDecreaseStatusOfButtons: (PassengerFilter) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val title = stringResource(id = filter.title)
+    val annotatedString = buildAnnotatedString {
+        withStyle(
+            style = SpanStyle(
+                fontFamily = FontFamily(Font(R.font.nunito_medium)),
+                color = colorResource(id = R.color.primary_text_color),
+                fontSize = 16.sp
+            )
+        ) {
+            append(title.substringBefore("("))
+        }
+        if (title.contains("(")) {
+            val startOfStyledText = title.indexOf("(")
+            withStyle(
+                style = SpanStyle(
+                    fontSize = 12.sp,
+                    fontFamily = FontFamily(Font(R.font.nunito_medium)),
+                    color = colorResource(id = R.color.primary_text_color)
+                )
+            ) {
+                append(title.substring(startOfStyledText))
+            }
+        }
+    }
+
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -35,13 +63,9 @@ fun PassengerFilterItem(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
+
         Text(
-            text = stringResource(id = filter.title),
-            fontFamily = FontFamily(Font(R.font.nunito_medium)),
-            color = colorResource(
-                id = R.color.primary_text_color
-            ),
-            fontSize = 18.sp
+            text = annotatedString,
         )
 
         PassengerCounter(

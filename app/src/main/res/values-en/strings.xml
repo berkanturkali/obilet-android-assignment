@@ -15,5 +15,5 @@
     <string name="try_again">Try Again</string>
     <string name="add_return_date">Add Date</string>
     <string name="flight_passenger_adult">%1$s ADULT</string>
-    <string name="passenger">YOLCU</string>
+    <string name="passenger">PASSENGER</string>
 </resources>
