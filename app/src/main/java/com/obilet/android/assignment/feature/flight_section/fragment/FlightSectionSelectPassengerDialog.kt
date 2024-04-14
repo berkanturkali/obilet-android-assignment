@@ -11,6 +11,7 @@ import com.obilet.android.assignment.core.model.flight_section.PassengerFilter
 import com.obilet.android.assignment.databinding.DialogFlightSectionSelectPassengerBinding
 import com.obilet.android.assignment.feature.flight_section.component.PassengerFilterList
 import com.obilet.android.assignment.feature.flight_section.viewmodel.FlightSectionSelectPassengerDialogViewModel
+import com.obilet.android.assignment.utils.setNavigationResult
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

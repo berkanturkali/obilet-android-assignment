@@ -327,7 +327,7 @@
                     app:tint="@color/icon_primary_color" />
 
                 <TextView
-                    android:id="@+id/passengerCountTv"
+                    android:id="@+id/passengerTv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"

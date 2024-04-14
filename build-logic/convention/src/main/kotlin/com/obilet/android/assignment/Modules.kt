@@ -7,4 +7,5 @@ object Modules {
     const val CORE_DATA = ":core-data"
     const val CORE_MODEL = ":core-model"
     const val CORE_STORAGE = ":core-storage"
+    const val CORE_CACHE = ":core-cache"
 }

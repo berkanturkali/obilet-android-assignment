@@ -80,7 +80,7 @@ class FlightSectionFragment :
         }
 
         viewModel.passengerCount.observe(viewLifecycleOwner) { count ->
-            binding.passengerCountTv.text =
+            binding.passengerTv.text =
                 getString(R.string.flight_passenger_adult, count.toString())
         }
     }

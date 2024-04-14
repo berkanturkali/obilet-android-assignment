@@ -48,6 +48,7 @@ dependencies {
         Modules.CORE_NETWORK,
         Modules.CORE_DATA,
         Modules.CORE_STORAGE,
+        Modules.CORE_CACHE,
     )
     implementAll(
         libs.androidx.core.splashScreen,
