@@ -21,7 +21,8 @@ dependencies {
     implementAllModules(
         Modules.CORE_NETWORK,
         Modules.CORE_MODEL,
-        Modules.CORE_STORAGE
+        Modules.CORE_STORAGE,
+        Modules.CORE_CACHE,
     )
 
     implementAll(

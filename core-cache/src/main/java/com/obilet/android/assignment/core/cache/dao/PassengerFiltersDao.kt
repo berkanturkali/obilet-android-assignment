@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 interface PassengerFiltersDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertOrUpdateFilter(filterEntity: PassengerFilterEntity): Long
+    suspend fun insertOrUpdateFilterList(filterEntityList: List<PassengerFilterEntity>): Long
 
     @Query("SELECT * FROM passenger_filters")
     fun getPassengerFilters(): Flow<List<PassengerFilterEntity>>
