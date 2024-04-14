@@ -8,17 +8,24 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.obilet.android.assignment.R
+import com.obilet.android.assignment.core.model.flight_section.PassengerFilter
 
 @Composable
 fun PassengerFilterItem(
-    filter: String,
+    filter: PassengerFilter,
+    increaseButtonEnabled: Boolean,
+    decreaseButtonEnabled: Boolean,
+    increaseButtonBackgroundColor: Color,
+    decreaseButtonBackgroundColor: Color,
+    setIncreaseDecreaseStatusOfButtons: (PassengerFilter) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(
@@ -29,20 +36,21 @@ fun PassengerFilterItem(
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         Text(
-            text = filter,
-            fontFamily = FontFamily(Font(R.font.nunito_bold)),
+            text = stringResource(id = filter.title),
+            fontFamily = FontFamily(Font(R.font.nunito_medium)),
             color = colorResource(
                 id = R.color.primary_text_color
             ),
-            fontSize = 22.sp
+            fontSize = 18.sp
         )
 
-        PassengerCounter()
+        PassengerCounter(
+            filter = filter,
+            increaseButtonEnabled = increaseButtonEnabled,
+            decreaseButtonEnabled = decreaseButtonEnabled,
+            increaseButtonBackgroundColor = increaseButtonBackgroundColor,
+            decreaseButtonBackgroundColor = decreaseButtonBackgroundColor,
+            setIncreaseDecreaseStatusOfButtons = setIncreaseDecreaseStatusOfButtons,
+        )
     }
-}
-
-@Preview
-@Composable
-fun PassengerFilterItemPrev() {
-    PassengerFilterItem(filter = "1 ADULT")
 }

@@ -7,6 +7,7 @@ import androidx.dynamicanimation.animation.FloatPropertyCompat
 import androidx.dynamicanimation.animation.SpringAnimation
 import androidx.dynamicanimation.animation.SpringForce
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.obilet.android.assignment.R
 import com.obilet.android.assignment.core.model.bus_location.BusLocation
 import com.obilet.android.assignment.databinding.FragmentFlightSectionBinding
@@ -132,6 +133,10 @@ class FlightSectionFragment :
 
         binding.addOrRemoveBtn.setOnClickListener {
             startAnimationOfAddOrRemoveDateButton()
+        }
+
+        binding.addPassengerTv.setOnClickListener {
+            findNavController().navigate(R.id.action_searchFragment_to_flightSectionSelectPassengerDialog)
         }
     }
 

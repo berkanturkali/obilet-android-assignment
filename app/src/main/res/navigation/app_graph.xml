@@ -9,5 +9,14 @@
         android:id="@+id/searchFragment"
         android:name="com.obilet.android.assignment.feature.search.fragment.SearchFragment"
         android:label="SearchFragment"
-        tools:layout="@layout/fragment_search"/>
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_flightSectionSelectPassengerDialog"
+            app:destination="@id/flightSectionSelectPassengerDialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/flightSectionSelectPassengerDialog"
+        android:name="com.obilet.android.assignment.feature.flight_section.fragment.FlightSectionSelectPassengerDialog"
+        android:label="FlightSectionSelectPassengerDialog"
+        tools:layout="@layout/dialog_flight_section_select_passenger" />
 </navigation>

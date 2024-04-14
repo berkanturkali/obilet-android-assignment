@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="adult">Adult</string>
+    <string name="student">Student(12–24 Ages)</string>
+    <string name="child">Child(2–11 Ages)</string>
+    <string name="baby">Baby(0–2 Ages)</string>
+    <string name="elder">Older than 65 Years Old</string>
+</resources>

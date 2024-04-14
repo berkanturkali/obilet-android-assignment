@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="adult">Yetişkin</string>
+    <string name="student">Öğrenci (12–24 Yaş)</string>
+    <string name="child">Çocuk (2–11 Yaş)</string>
+    <string name="baby">Bebek (0–2 Yaş)</string>
+    <string name="elder">65 Yaş ve Üzeri</string>
+</resources>
