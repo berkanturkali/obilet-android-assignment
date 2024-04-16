@@ -27,6 +27,7 @@ dependencies {
 
     implementAll(
         libs.retrofit.core,
+        libs.jakewharton.timber
     )
 
     implementAllUnitTests(

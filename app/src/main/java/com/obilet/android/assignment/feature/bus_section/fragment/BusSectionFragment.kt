@@ -64,8 +64,7 @@ class BusSectionFragment :
 
     private fun subscribeObservers() {
         searchFragmentViewModel.originAndDestinationPair.observe(viewLifecycleOwner) {
-            val (origin, destination) = it
-            setOriginAndDestination(origin!!, destination!!)
+            viewModel.setOriginAndDestination(it)
         }
         viewModel.selectedDay.observe(viewLifecycleOwner) { day ->
             when (day!!) {
@@ -94,12 +93,18 @@ class BusSectionFragment :
                 }
             }
         }
+
+        viewModel.originAndDestinationPair.observe(viewLifecycleOwner) {
+            val (origin, destination) = it
+            setOriginAndDestination(origin!!, destination!!)
+        }
     }
 
     private fun setDateText(date: String) {
         startDateAnimation()
         binding.dateTv.text = date
     }
+
     private fun startDateAnimation() {
         slideInBottom.setStartValue(+binding.dateTv.height.toFloat())
         slideInBottom.animateToFinalPosition(0f)
@@ -117,8 +122,8 @@ class BusSectionFragment :
 
         binding.switchDirectionsBtn.setOnClickListener {
             startRotateAnimation()
-            val (origin, destination) = searchFragmentViewModel.originAndDestinationPair.value!!
-            searchFragmentViewModel.setOriginAndDestination(
+            val (origin, destination) = viewModel.originAndDestinationPair.value!!
+            viewModel.setOriginAndDestination(
                 originAndDestinationPair = searchFragmentViewModel.originAndDestinationPair.value!!.copy(
                     first = destination,
                     origin

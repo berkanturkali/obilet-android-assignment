@@ -29,9 +29,6 @@ class FlightSectionFragment :
 
     private val viewModel by viewModels<FlightSectionFragmentViewModel>()
 
-    private var currentRotation = 0f
-
-    private var currentRotationOfAddOrRemoveDateButton = 0f
 
     private val rotateAnimation by lazy {
         binding.switchDirectionsBtn.getSpringAnimationForTheView(
@@ -70,12 +67,12 @@ class FlightSectionFragment :
 
     private fun subscribeObservers() {
         searchFragmentViewModel.originAndDestinationPair.observe(viewLifecycleOwner) {
-            val (origin, destination) = it
-            setOriginAndDestination(origin!!, destination!!)
+            viewModel.setOriginAndDestination(it)
         }
 
-        viewModel.defaultDepartureDate.observe(viewLifecycleOwner) { date ->
-            val (day, month, dayOfTheWeek) = date
+        viewModel.departureDate.observe(viewLifecycleOwner) { date ->
+            val formattedDate = viewModel.formatDepartureDate(date)
+            val (day, month, dayOfTheWeek) = formattedDate
             setDepartureDate(day, month, dayOfTheWeek)
         }
 
@@ -100,6 +97,11 @@ class FlightSectionFragment :
             }
             binding.passengerTv.text = passengerText
 
+        }
+
+        viewModel.originAndDestinationPair.observe(viewLifecycleOwner) {
+            val (origin, destination) = it
+            setOriginAndDestination(origin!!, destination!!)
         }
     }
 
@@ -140,8 +142,8 @@ class FlightSectionFragment :
     private fun setClickListeners() {
         binding.switchDirectionsBtn.setOnClickListener {
             startRotateAnimation()
-            val (origin, destination) = searchFragmentViewModel.originAndDestinationPair.value!!
-            searchFragmentViewModel.setOriginAndDestination(
+            val (origin, destination) = viewModel.originAndDestinationPair.value!!
+            viewModel.setOriginAndDestination(
                 originAndDestinationPair = searchFragmentViewModel.originAndDestinationPair.value!!.copy(
                     first = destination, origin
                 )
@@ -159,22 +161,22 @@ class FlightSectionFragment :
 
     private fun startAnimationOfAddOrRemoveDateButton() {
         addOrRemoveReturnDateButtonRotateAnimation.setStartValue(
-            currentRotationOfAddOrRemoveDateButton
+            viewModel.currentRotationOfAddOrRemoveDateButton
         )
-        currentRotationOfAddOrRemoveDateButton += 45
-        currentRotationOfAddOrRemoveDateButton %= 90
+        viewModel.currentRotationOfAddOrRemoveDateButton += 45
+        viewModel.currentRotationOfAddOrRemoveDateButton %= 90
         addOrRemoveReturnDateButtonRotateAnimation.spring.finalPosition =
-            currentRotationOfAddOrRemoveDateButton
+            viewModel.currentRotationOfAddOrRemoveDateButton
 
         addOrRemoveReturnDateButtonRotateAnimation.start()
 
     }
 
     private fun startRotateAnimation() {
-        rotateAnimation.setStartValue(currentRotation)
-        currentRotation += 180
-        rotateAnimation.spring.finalPosition = currentRotation
-        currentRotation %= 360
+        rotateAnimation.setStartValue(viewModel.currentRotation)
+        viewModel.currentRotation += 180
+        rotateAnimation.spring.finalPosition = viewModel.currentRotation
+        viewModel.currentRotation %= 360
         rotateAnimation.start()
     }
 

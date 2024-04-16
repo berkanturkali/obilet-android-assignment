@@ -59,7 +59,8 @@ dependencies {
         libs.androidx.compose.ui,
         libs.androidx.compose.material,
         libs.androidx.compose.constraint.layout,
-        libs.androidx.compose.runtime.livedata
+        libs.androidx.compose.runtime.livedata,
+        libs.jakewharton.timber
     )
 
     implementAllUnitTests(

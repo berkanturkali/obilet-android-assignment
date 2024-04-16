@@ -23,6 +23,7 @@ androidXComposeCompiler = "1.5.8"
 androidXComposeConstraintLayout = "1.0.1"
 androidXRoom = "2.6.1"
 androidXComposeLiveData = "1.6.1"
+timber = "5.0.1"
 
 
 [libraries]
@@ -57,6 +58,7 @@ androidx-room-runtime = { group = "androidx.room", name = "room-runtime", versio
 androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "androidXRoom" }
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidXRoom" }
 androidx-compose-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "androidXComposeLiveData" }
+jakewharton-timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
 
 
 
