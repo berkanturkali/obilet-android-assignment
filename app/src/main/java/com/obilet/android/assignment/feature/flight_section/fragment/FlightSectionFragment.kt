@@ -67,6 +67,7 @@ class FlightSectionFragment :
 
     private fun subscribeObservers() {
         searchFragmentViewModel.originAndDestinationPair.observe(viewLifecycleOwner) {
+            if (viewModel.originAndDestinationPair.value?.first != null) return@observe
             viewModel.setOriginAndDestination(it)
         }
 
@@ -164,11 +165,10 @@ class FlightSectionFragment :
             viewModel.currentRotationOfAddOrRemoveDateButton
         )
         viewModel.currentRotationOfAddOrRemoveDateButton += 45
-        viewModel.currentRotationOfAddOrRemoveDateButton %= 90
         addOrRemoveReturnDateButtonRotateAnimation.spring.finalPosition =
             viewModel.currentRotationOfAddOrRemoveDateButton
-
         addOrRemoveReturnDateButtonRotateAnimation.start()
+        viewModel.currentRotationOfAddOrRemoveDateButton %= 90
 
     }
 

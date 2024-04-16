@@ -64,6 +64,7 @@ class BusSectionFragment :
 
     private fun subscribeObservers() {
         searchFragmentViewModel.originAndDestinationPair.observe(viewLifecycleOwner) {
+            if (viewModel.originAndDestinationPair.value?.first != null) return@observe
             viewModel.setOriginAndDestination(it)
         }
         viewModel.selectedDay.observe(viewLifecycleOwner) { day ->
