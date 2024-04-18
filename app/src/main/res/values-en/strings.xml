@@ -16,4 +16,8 @@
     <string name="add_return_date">Add Date</string>
     <string name="flight_passenger_adult">%1$s ADULT</string>
     <string name="passenger">PASSENGER</string>
+    <string name="see_on_the_map">See On The Map</string>
+    <string name="origin_and_destination_can_not_be_the_same">Origin and destination can not be the same.\nPlease select another location.</string>
+    <string name="cancel">Cancel</string>
+    <string name="search">Search</string>
 </resources>

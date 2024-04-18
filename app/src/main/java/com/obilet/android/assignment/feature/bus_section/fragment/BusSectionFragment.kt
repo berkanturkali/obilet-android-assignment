@@ -8,6 +8,7 @@ import androidx.dynamicanimation.animation.FloatPropertyCompat
 import androidx.dynamicanimation.animation.SpringAnimation
 import androidx.dynamicanimation.animation.SpringForce
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.button.MaterialButton
 import com.obilet.android.assignment.R
 import com.obilet.android.assignment.core.model.BusSectionDay
@@ -15,7 +16,13 @@ import com.obilet.android.assignment.core.model.bus_location.BusLocation
 import com.obilet.android.assignment.databinding.FragmentBusSectionBinding
 import com.obilet.android.assignment.feature.base.BaseFragment
 import com.obilet.android.assignment.feature.bus_section.viewmodel.BusSectionFragmentViewModel
+import com.obilet.android.assignment.feature.location.args.LocationsFragmentArgs
+import com.obilet.android.assignment.feature.location.fragment.LocationsFragment
+import com.obilet.android.assignment.feature.location.model.LocationDirection
+import com.obilet.android.assignment.feature.search.TabItemFragment
+import com.obilet.android.assignment.feature.search.fragment.SearchFragmentDirections
 import com.obilet.android.assignment.feature.search.viewmodel.SearchFragmentViewModel
+import com.obilet.android.assignment.utils.getNavigationResult
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,38 +35,35 @@ class BusSectionFragment :
 
     private var currentRotation = 0f
 
-    private val rotateAnimation by lazy {
-        binding.switchDirectionsBtn.getSpringAnimationForTheView(
-            DynamicAnimation.ROTATION,
-            SpringForce.STIFFNESS_LOW
-        )
-    }
+    private lateinit var rotateAnimation: SpringAnimation
 
-    private val slideInBottom by lazy {
-        binding.dateTv.getSpringAnimationForTheView(DynamicAnimation.TRANSLATION_Y)
-    }
+    private lateinit var slideInBottom: SpringAnimation
 
-    private val slideInLeftOrigin by lazy {
-        binding.originTv.getSpringAnimationForTheView(
-            DynamicAnimation.TRANSLATION_X,
-            SpringForce.STIFFNESS_MEDIUM,
-            SpringForce.DAMPING_RATIO_NO_BOUNCY
-        )
-    }
+    private lateinit var slideInLeftOrigin: SpringAnimation
 
-    private val slideInLeftDestination by lazy {
-        binding.destinationTv.getSpringAnimationForTheView(
-            DynamicAnimation.TRANSLATION_X,
-            SpringForce.STIFFNESS_MEDIUM,
-            SpringForce.DAMPING_RATIO_NO_BOUNCY
-        )
-    }
-
+    private lateinit var slideInLeftDestination: SpringAnimation
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        rotateAnimation.setStartValue(0f)
+        initAnimations()
         subscribeObservers()
         setClickListeners()
+    }
+
+    private fun initAnimations() {
+        slideInBottom = binding.dateTv.getSpringAnimationForTheView(DynamicAnimation.TRANSLATION_Y)
+        slideInLeftOrigin = binding.originTv.getSpringAnimationForTheView(
+            DynamicAnimation.TRANSLATION_X,
+            SpringForce.STIFFNESS_MEDIUM,
+            SpringForce.DAMPING_RATIO_NO_BOUNCY
+        )
+        slideInLeftDestination = binding.destinationTv.getSpringAnimationForTheView(
+            DynamicAnimation.TRANSLATION_X,
+            SpringForce.STIFFNESS_MEDIUM,
+            SpringForce.DAMPING_RATIO_NO_BOUNCY
+        )
+        rotateAnimation = binding.switchDirectionsBtn.getSpringAnimationForTheView(
+            DynamicAnimation.ROTATION, SpringForce.STIFFNESS_LOW
+        )
     }
 
     private fun subscribeObservers() {
@@ -71,8 +75,7 @@ class BusSectionFragment :
             when (day!!) {
                 BusSectionDay.TODAY -> {
                     setTomorrowButtonColors(
-                        textColor = R.color.button_color,
-                        backgroundColor = R.color.on_primary
+                        textColor = R.color.button_color, backgroundColor = R.color.on_primary
                     )
                     setTodayButtonColors(
                         textColor = R.color.button_text_color,
@@ -87,8 +90,7 @@ class BusSectionFragment :
                         backgroundColor = R.color.button_color
                     )
                     setTodayButtonColors(
-                        textColor = R.color.button_color,
-                        backgroundColor = R.color.on_primary
+                        textColor = R.color.button_color, backgroundColor = R.color.on_primary
                     )
                     setDateText(viewModel.getTodayOrderTomorrowDate(true))
                 }
@@ -98,6 +100,15 @@ class BusSectionFragment :
         viewModel.originAndDestinationPair.observe(viewLifecycleOwner) {
             val (origin, destination) = it
             setOriginAndDestination(origin!!, destination!!)
+        }
+
+        getNavigationResult<Bundle>(
+            R.id.searchFragment,
+            LocationsFragment.BUS_SECTION_SELECTED_LOCATION_KEY
+        ) {
+            val location = it.getParcelable<BusLocation>(LocationsFragment.SELECTED_LOCATION)
+            val direction = it.get(LocationsFragment.DIRECTION) as LocationDirection
+            onOriginDestinationSelected(direction, location!!)
         }
     }
 
@@ -126,12 +137,35 @@ class BusSectionFragment :
             val (origin, destination) = viewModel.originAndDestinationPair.value!!
             viewModel.setOriginAndDestination(
                 originAndDestinationPair = searchFragmentViewModel.originAndDestinationPair.value!!.copy(
-                    first = destination,
-                    origin
+                    first = destination, second = origin
                 )
             )
         }
+
+        binding.originTv.setOnClickListener {
+            navigateToLocationsFragment(LocationDirection.ORIGIN)
+        }
+
+        binding.destinationTv.setOnClickListener {
+            navigateToLocationsFragment(LocationDirection.DESTINATION)
+        }
     }
+
+    private fun navigateToLocationsFragment(direction: LocationDirection) {
+        val (origin, destination) = viewModel.originAndDestinationPair.value!!
+        val action = SearchFragmentDirections.actionSearchFragmentToLocationsFragment(
+            LocationsFragmentArgs(
+                locationList = searchFragmentViewModel.busLocations.value?.data ?: emptyList(),
+                direction = direction,
+                selectedOrigin = origin!!,
+                selectedDestination = destination!!,
+                previousTabItemLabelId = TabItemFragment.BUS_SECTION.label
+            )
+        )
+
+        findNavController().navigate(action)
+    }
+
 
     private fun startRotateAnimation() {
         rotateAnimation.setStartValue(currentRotation)
@@ -147,9 +181,7 @@ class BusSectionFragment :
 
     private fun setTomorrowButtonColors(textColor: Int, backgroundColor: Int) {
         setButtonColors(
-            binding.tomorrowBtn,
-            textColor = textColor,
-            backgroundColor = backgroundColor
+            binding.tomorrowBtn, textColor = textColor, backgroundColor = backgroundColor
         )
     }
 
@@ -186,7 +218,27 @@ class BusSectionFragment :
             if (dampingRatio != null) {
                 spring.dampingRatio = dampingRatio
             }
+        }
+    }
 
+    fun onOriginDestinationSelected(direction: LocationDirection, location: BusLocation) {
+        val (origin, destination) = viewModel.originAndDestinationPair.value!!
+        when (direction) {
+            LocationDirection.ORIGIN -> {
+                viewModel.setOriginAndDestination(
+                    viewModel.originAndDestinationPair.value!!.copy(
+                        first = location, second = destination
+                    )
+                )
+            }
+
+            LocationDirection.DESTINATION -> {
+                viewModel.setOriginAndDestination(
+                    viewModel.originAndDestinationPair.value!!.copy(
+                        first = origin, second = location
+                    )
+                )
+            }
         }
     }
 }

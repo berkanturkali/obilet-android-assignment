@@ -9,14 +9,30 @@
         android:id="@+id/searchFragment"
         android:name="com.obilet.android.assignment.feature.search.fragment.SearchFragment"
         android:label="SearchFragment"
-        tools:layout="@layout/fragment_search" >
+        tools:layout="@layout/fragment_search">
         <action
             android:id="@+id/action_searchFragment_to_flightSectionSelectPassengerDialog"
             app:destination="@id/flightSectionSelectPassengerDialog" />
+        <action
+            android:id="@+id/action_searchFragment_to_locationsFragment"
+            app:destination="@id/locationsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <dialog
         android:id="@+id/flightSectionSelectPassengerDialog"
         android:name="com.obilet.android.assignment.feature.flight_section.fragment.FlightSectionSelectPassengerDialog"
         android:label="FlightSectionSelectPassengerDialog"
         tools:layout="@layout/dialog_flight_section_select_passenger" />
+    <fragment
+        android:id="@+id/locationsFragment"
+        android:name="com.obilet.android.assignment.feature.location.fragment.LocationsFragment"
+        android:label="LocationsFragment"
+        tools:layout="@layout/fragment_locations">
+        <argument
+            android:name="locationsFragmentArgs"
+            app:argType="com.obilet.android.assignment.feature.location.args.LocationsFragmentArgs" />
+    </fragment>
 </navigation>

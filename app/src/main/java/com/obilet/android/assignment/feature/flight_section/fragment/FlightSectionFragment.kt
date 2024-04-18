@@ -13,7 +13,13 @@ import com.obilet.android.assignment.core.model.bus_location.BusLocation
 import com.obilet.android.assignment.databinding.FragmentFlightSectionBinding
 import com.obilet.android.assignment.feature.base.BaseFragment
 import com.obilet.android.assignment.feature.flight_section.viewmodel.FlightSectionFragmentViewModel
+import com.obilet.android.assignment.feature.location.args.LocationsFragmentArgs
+import com.obilet.android.assignment.feature.location.fragment.LocationsFragment
+import com.obilet.android.assignment.feature.location.model.LocationDirection
+import com.obilet.android.assignment.feature.search.TabItemFragment
+import com.obilet.android.assignment.feature.search.fragment.SearchFragmentDirections
 import com.obilet.android.assignment.feature.search.viewmodel.SearchFragmentViewModel
+import com.obilet.android.assignment.utils.getNavigationResult
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Locale
 
@@ -29,40 +35,44 @@ class FlightSectionFragment :
 
     private val viewModel by viewModels<FlightSectionFragmentViewModel>()
 
+    private lateinit var rotateAnimation: SpringAnimation
 
-    private val rotateAnimation by lazy {
-        binding.switchDirectionsBtn.getSpringAnimationForTheView(
-            DynamicAnimation.ROTATION, SpringForce.STIFFNESS_LOW
-        )
-    }
-    private val slideInLeftOrigin by lazy {
-        binding.originTv.getSpringAnimationForTheView(
-            DynamicAnimation.TRANSLATION_X,
-            SpringForce.STIFFNESS_MEDIUM,
-            SpringForce.DAMPING_RATIO_NO_BOUNCY
-        )
-    }
+    private lateinit var slideInLeftOrigin: SpringAnimation
 
-    private val slideInLeftDestination by lazy {
-        binding.destinationTv.getSpringAnimationForTheView(
-            DynamicAnimation.TRANSLATION_X,
-            SpringForce.STIFFNESS_MEDIUM,
-            SpringForce.DAMPING_RATIO_NO_BOUNCY
-        )
-    }
+    private lateinit var slideInLeftDestination: SpringAnimation
 
-    private val addOrRemoveReturnDateButtonRotateAnimation by lazy {
-        binding.addOrRemoveBtn.getSpringAnimationForTheView(
-            DynamicAnimation.ROTATION,
-            SpringForce.STIFFNESS_MEDIUM,
-            SpringForce.DAMPING_RATIO_HIGH_BOUNCY
-        )
-    }
+    private lateinit var addOrRemoveReturnDateButtonRotateAnimation: SpringAnimation
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initAnimations()
         subscribeObservers()
         setClickListeners()
+    }
+
+    private fun initAnimations() {
+        rotateAnimation = binding.switchDirectionsBtn.getSpringAnimationForTheView(
+            DynamicAnimation.ROTATION, SpringForce.STIFFNESS_LOW
+        )
+
+        slideInLeftOrigin = binding.originTv.getSpringAnimationForTheView(
+            DynamicAnimation.TRANSLATION_X,
+            SpringForce.STIFFNESS_MEDIUM,
+            SpringForce.DAMPING_RATIO_NO_BOUNCY
+        )
+
+        slideInLeftDestination = binding.destinationTv.getSpringAnimationForTheView(
+            DynamicAnimation.TRANSLATION_X,
+            SpringForce.STIFFNESS_MEDIUM,
+            SpringForce.DAMPING_RATIO_NO_BOUNCY
+        )
+
+        addOrRemoveReturnDateButtonRotateAnimation =
+            binding.addOrRemoveBtn.getSpringAnimationForTheView(
+                DynamicAnimation.ROTATION,
+                SpringForce.STIFFNESS_MEDIUM,
+                SpringForce.DAMPING_RATIO_HIGH_BOUNCY
+            )
     }
 
     private fun subscribeObservers() {
@@ -104,6 +114,15 @@ class FlightSectionFragment :
             val (origin, destination) = it
             setOriginAndDestination(origin!!, destination!!)
         }
+
+        getNavigationResult<Bundle>(
+            R.id.searchFragment,
+            LocationsFragment.FLIGHT_SECTION_SELECTED_LOCATION_KEY
+        ) {
+            val location = it.getParcelable<BusLocation>(LocationsFragment.SELECTED_LOCATION)
+            val direction = it.get(LocationsFragment.DIRECTION) as LocationDirection
+            onOriginDestinationSelected(direction, location!!)
+        }
     }
 
     private fun setDepartureDate(day: String, month: String, dayOfTheWeek: String) {
@@ -141,6 +160,14 @@ class FlightSectionFragment :
 
 
     private fun setClickListeners() {
+        binding.originTv.setOnClickListener {
+            navigateToLocationsFragment(LocationDirection.ORIGIN)
+        }
+
+        binding.destinationTv.setOnClickListener {
+            navigateToLocationsFragment(LocationDirection.DESTINATION)
+        }
+
         binding.switchDirectionsBtn.setOnClickListener {
             startRotateAnimation()
             val (origin, destination) = viewModel.originAndDestinationPair.value!!
@@ -158,6 +185,21 @@ class FlightSectionFragment :
         binding.addPassengerTv.setOnClickListener {
             findNavController().navigate(R.id.action_searchFragment_to_flightSectionSelectPassengerDialog)
         }
+    }
+
+    private fun navigateToLocationsFragment(direction: LocationDirection) {
+        val (origin, destination) = viewModel.originAndDestinationPair.value!!
+        val action = SearchFragmentDirections.actionSearchFragmentToLocationsFragment(
+            LocationsFragmentArgs(
+                locationList = searchFragmentViewModel.busLocations.value?.data ?: emptyList(),
+                direction = direction,
+                selectedOrigin = origin!!,
+                selectedDestination = destination!!,
+                previousTabItemLabelId = TabItemFragment.FLIGHT_SECTION.label
+            )
+        )
+
+        findNavController().navigate(action)
     }
 
     private fun startAnimationOfAddOrRemoveDateButton() {
@@ -193,6 +235,27 @@ class FlightSectionFragment :
                 spring.dampingRatio = dampingRatio
             }
 
+        }
+    }
+
+    fun onOriginDestinationSelected(direction: LocationDirection, location: BusLocation) {
+        val (origin, destination) = viewModel.originAndDestinationPair.value!!
+        when (direction) {
+            LocationDirection.ORIGIN -> {
+                viewModel.setOriginAndDestination(
+                    viewModel.originAndDestinationPair.value!!.copy(
+                        first = location, second = destination
+                    )
+                )
+            }
+
+            LocationDirection.DESTINATION -> {
+                viewModel.setOriginAndDestination(
+                    viewModel.originAndDestinationPair.value!!.copy(
+                        first = origin, second = location
+                    )
+                )
+            }
         }
     }
 

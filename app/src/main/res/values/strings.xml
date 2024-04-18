@@ -18,4 +18,8 @@
     <string name="add_return_date">Dönüş Ekle</string>
     <string name="flight_passenger_adult">%1$s YETİŞKİN</string>
     <string name="passenger">YOLCU</string>
+    <string name="see_on_the_map">Haritada Gör</string>
+    <string name="origin_and_destination_can_not_be_the_same">Başlangıç ve bitiş yönleri aynı seçilemez.\nLütfen farklı bir lokasyon seçiniz.</string>
+    <string name="cancel">İptal Et</string>
+    <string name="search">Ara</string>
 </resources>

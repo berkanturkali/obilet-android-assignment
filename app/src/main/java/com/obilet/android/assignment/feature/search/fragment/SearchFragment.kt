@@ -26,13 +26,8 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
 
     private val viewModel by viewModels<SearchFragmentViewModel>()
 
-    private val pagerAdapter by lazy {
-        SearchFragmentPagerAdapter(
-            fragments = tabItems.map { it.fragment },
-            fragmentManager = childFragmentManager,
-            lifecycle = lifecycle
-        )
-    }
+    private lateinit var pagerAdapter: SearchFragmentPagerAdapter
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,8 +36,15 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(FragmentSearchBinding
     }
 
     private fun initTabLayout() {
+        pagerAdapter =
+            SearchFragmentPagerAdapter(
+                fragments = tabItems.map { it.fragment },
+                fragmentManager = childFragmentManager,
+                lifecycle = lifecycle
+            )
         binding.viewPager.adapter = pagerAdapter
         binding.viewPager.isUserInputEnabled = true
+        binding.viewPager.offscreenPageLimit = 2
         tabLayoutMediator =
             TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
                 tab.text = getString(tabItems[position].label)

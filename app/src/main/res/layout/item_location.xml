@@ -4,16 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:layout_marginStart="12dp"
+    android:layout_marginTop="6dp"
+    android:layout_marginEnd="12dp"
     android:backgroundTint="@color/on_primary"
     app:cardCornerRadius="6dp"
-    app:cardElevation="8dp"
+    app:cardElevation="4dp"
     app:strokeWidth="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:padding="12dp">
 
         <ImageView
             android:id="@+id/locationIv"
@@ -27,17 +29,55 @@
 
         <TextView
             android:id="@+id/locationTv"
-            style="@style/TextAppearance.AppCompat.Medium"
+            style="@style/TextAppearance.AppCompat.Small"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:fontFamily="@font/nunito_bold"
             android:textColor="@color/primary_color"
             app:layout_constraintBottom_toBottomOf="@id/locationIv"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/seeOnTheMapTv"
             app:layout_constraintStart_toEndOf="@id/locationIv"
             app:layout_constraintTop_toTopOf="@id/locationIv"
             tools:text="Location" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/seeOnTheMapCv"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:backgroundTint="@color/cardview_light_background"
+            app:cardElevation="2dp"
+            app:layout_constraintBottom_toTopOf="@id/seeOnTheMapTv"
+            app:layout_constraintEnd_toEndOf="@id/seeOnTheMapTv"
+            app:layout_constraintStart_toStartOf="@id/seeOnTheMapTv"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeWidth="0dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/seeOnTheMapBtn"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:backgroundTint="@color/on_primary"
+                app:elevation="8dp"
+                app:icon="@drawable/ic_right"
+                app:iconGravity="textStart"
+                app:iconPadding="0dp"
+                app:iconTint="@color/primary_color"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.OBilet.Button.Rounded" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/seeOnTheMapTv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/nunito_bold"
+            android:text="@string/see_on_the_map"
+            android:textColor="@color/button_color"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/seeOnTheMapCv" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

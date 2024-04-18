@@ -28,10 +28,10 @@ class SearchFragmentViewModel @Inject constructor(
     val originAndDestinationPair: LiveData<Pair<BusLocation?, BusLocation?>> get() = _originAndDestinationPair
 
     init {
-        getBusLocations(null)
+        getBusLocations()
     }
 
-    fun getBusLocations(query: String?) {
+    private fun getBusLocations(query: String? = null) {
         viewModelScope.launch(Dispatchers.Main) {
             locationRepository.getBusLocations(query).collect { resource ->
                 _busLocations.value = resource

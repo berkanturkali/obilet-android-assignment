@@ -8,6 +8,8 @@ plugins {
     alias(libs.plugins.obilet.android.application)
     alias(libs.plugins.obilet.android.hilt)
     alias(libs.plugins.obilet.android.application.compose)
+    id("kotlin-parcelize")
+    id("androidx.navigation.safeargs")
 }
 
 android {
@@ -60,7 +62,8 @@ dependencies {
         libs.androidx.compose.material,
         libs.androidx.compose.constraint.layout,
         libs.androidx.compose.runtime.livedata,
-        libs.jakewharton.timber
+        libs.jakewharton.timber,
+        libs.androidx.view.pager
     )
 
     implementAllUnitTests(

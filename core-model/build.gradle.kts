@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.obilet.android.library)
     alias(libs.plugins.obilet.android.hilt)
+    id("kotlin-parcelize")
 }
 
 android {

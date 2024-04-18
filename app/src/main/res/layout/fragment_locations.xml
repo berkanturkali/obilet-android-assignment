@@ -30,6 +30,7 @@
         android:backgroundTint="#44FFFFFF"
         app:cardCornerRadius="32dp"
         app:cardElevation="12dp"
+        app:layout_constraintBottom_toTopOf="@id/searchBoxCv"
         app:layout_constraintStart_toStartOf="@id/toolbar"
         app:layout_constraintTop_toTopOf="@id/toolbar"
         app:strokeWidth="0dp">
@@ -62,7 +63,6 @@
         app:layout_constraintTop_toTopOf="@+id/backBtnCv"
         tools:text="Title" />
 
-
     <androidx.cardview.widget.CardView
         android:id="@+id/searchBoxCv"
         android:layout_width="0dp"
@@ -70,36 +70,61 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        app:cardCornerRadius="12dp"
+        app:cardCornerRadius="32dp"
         app:cardElevation="8dp"
+        android:animateLayoutChanges="true"
         app:layout_constraintBottom_toBottomOf="@id/toolbarHeightGuideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintEnd_toStartOf="@id/cancelTv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/backBtnCv">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/searchTextInputLayout"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:boxStrokeWidth="0dp"
-            app:boxStrokeWidthFocused="0dp"
-            app:endIconMode="clear_text">
+            android:layout_height="wrap_content">
 
             <EditText
                 android:id="@+id/searchEt"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
                 android:background="@color/white"
                 android:drawableStart="@drawable/ic_search"
                 android:drawablePadding="8dp"
                 android:drawableTint="@color/icon_primary_color"
-                android:ems="10"
-                android:inputType="text|textCapSentences"
                 android:longClickable="false"
                 android:padding="10dp"
-                android:textSize="15sp" />
+                android:textCursorDrawable="@null"
+                android:textSize="12sp" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+            <ImageView
+                android:id="@+id/clearQueryIv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/ic_close"
+                android:visibility="gone"
+                app:tint="@color/primary_color"
+                tools:visibility="visible" />
+        </RelativeLayout>
     </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/cancelTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/nunito_medium"
+        android:text="@string/cancel"
+        android:textColor="@color/on_primary"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/searchBoxCv"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/searchBoxCv"
+        app:layout_constraintTop_toTopOf="@id/searchBoxCv" />
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -110,7 +135,35 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbarHeightGuideline"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
         tools:listitem="@layout/item_location" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/scrollToTopCv"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_margin="32dp"
+        android:backgroundTint="@android:color/transparent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:strokeWidth="0dp"
+        tools:visibility="visible">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/scrollToTopBtn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:insetLeft="0dp"
+            android:insetTop="0dp"
+            android:insetRight="0dp"
+            android:insetBottom="0dp"
+            app:backgroundTint="#BBE9EDEF"
+            app:icon="@drawable/ic_up"
+            app:iconGravity="textStart"
+            app:iconPadding="0dp"
+            app:iconTint="@color/primary_color"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.OBilet.Button.Rounded" />
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

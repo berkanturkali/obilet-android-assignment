@@ -17,21 +17,25 @@ fun <T> Fragment.getNavigationResult(
     key: String,
     onResult: (result: T) -> Unit,
 ) {
-    val navBackStackEntry = findNavController().getBackStackEntry(id)
-    val observer = LifecycleEventObserver { _, event ->
-        if (event == Lifecycle.Event.ON_RESUME && navBackStackEntry.savedStateHandle.contains(
-                key
-            )
-        ) {
-            val result = navBackStackEntry.savedStateHandle.get<T>(key)
-            result?.let(onResult)
-            navBackStackEntry.savedStateHandle.remove<T>(key)
+    try {
+        val navBackStackEntry = findNavController().getBackStackEntry(id)
+        val observer = LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_RESUME && navBackStackEntry.savedStateHandle.contains(
+                    key
+                )
+            ) {
+                val result = navBackStackEntry.savedStateHandle.get<T>(key)
+                result?.let(onResult)
+                navBackStackEntry.savedStateHandle.remove<T>(key)
+            }
         }
+        navBackStackEntry.lifecycle.addObserver(observer)
+        viewLifecycleOwner.lifecycle.addObserver(LifecycleEventObserver { _, event ->
+            if (event == Lifecycle.Event.ON_DESTROY) {
+                navBackStackEntry.lifecycle.removeObserver(observer)
+            }
+        })
+    } catch (e:Exception) {
+        e.printStackTrace()
     }
-    navBackStackEntry.lifecycle.addObserver(observer)
-    viewLifecycleOwner.lifecycle.addObserver(LifecycleEventObserver { _, event ->
-        if (event == Lifecycle.Event.ON_DESTROY) {
-            navBackStackEntry.lifecycle.removeObserver(observer)
-        }
-    })
 }
