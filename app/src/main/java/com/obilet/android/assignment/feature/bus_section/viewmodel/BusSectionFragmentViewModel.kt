@@ -8,6 +8,7 @@ import com.obilet.android.assignment.core.model.bus_location.BusLocation
 import com.obilet.android.assignment.feature.bus_section.usecase.FormatDateWithTheGivenPatternUseCase
 import com.obilet.android.assignment.feature.bus_section.usecase.GetTodayOrTomorrowDateUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import java.util.Date
 import javax.inject.Inject
 
 @HiltViewModel
@@ -26,17 +27,26 @@ class BusSectionFragmentViewModel @Inject constructor(
 
     val originAndDestinationPair: LiveData<Pair<BusLocation?, BusLocation?>> get() = _originAndDestinationPair
 
+    lateinit var selectedDate: Date
+
     fun setSelectedDay(day: BusSectionDay) {
         _selectedDay.value = day
     }
 
 
     fun getTodayOrderTomorrowDate(isTomorrow: Boolean): String {
-        val date = getTodayOrTomorrowDateUseCase(isTomorrow)
-        return formatDateWithTheGivenPatternUseCase(date)
+        selectedDate = getTodayOrTomorrowDateUseCase(isTomorrow)
+        return formatDateWithTheGivenPatternUseCase(selectedDate)
     }
 
     fun setOriginAndDestination(originAndDestinationPair: Pair<BusLocation?, BusLocation?>) {
         _originAndDestinationPair.value = originAndDestinationPair
+    }
+
+    fun formatTheDateWithTheGivenPattern(
+        selectedDate: Date,
+        pattern: String = FormatDateWithTheGivenPatternUseCase.DEFAULT_PATTERN
+    ): String {
+        return formatDateWithTheGivenPatternUseCase(selectedDate, pattern)
     }
 }

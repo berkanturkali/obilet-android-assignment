@@ -1,6 +1,7 @@
 package com.obilet.android.assignment.core.model
 
-enum class BusSectionDay(val value: Int) {
-    TODAY(1),
-    TOMORROW(2)
+enum class BusSectionDay {
+    TODAY,
+    TOMORROW,
+    OTHER,
 }

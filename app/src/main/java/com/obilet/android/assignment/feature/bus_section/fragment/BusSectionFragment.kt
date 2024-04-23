@@ -10,6 +10,9 @@ import androidx.dynamicanimation.animation.SpringForce
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.DateValidatorPointForward
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.obilet.android.assignment.R
 import com.obilet.android.assignment.core.model.BusSectionDay
 import com.obilet.android.assignment.core.model.bus_location.BusLocation
@@ -24,6 +27,7 @@ import com.obilet.android.assignment.feature.search.fragment.SearchFragmentDirec
 import com.obilet.android.assignment.feature.search.viewmodel.SearchFragmentViewModel
 import com.obilet.android.assignment.utils.getNavigationResult
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Date
 
 @AndroidEntryPoint
 class BusSectionFragment :
@@ -94,6 +98,17 @@ class BusSectionFragment :
                     )
                     setDateText(viewModel.getTodayOrderTomorrowDate(true))
                 }
+
+                BusSectionDay.OTHER -> {
+                    setTomorrowButtonColors(
+                        textColor = R.color.button_color,
+                        backgroundColor = R.color.on_primary
+                    )
+                    setTodayButtonColors(
+                        textColor = R.color.button_color, backgroundColor = R.color.on_primary
+                    )
+                    setDateText(viewModel.formatTheDateWithTheGivenPattern(viewModel.selectedDate))
+                }
             }
         }
 
@@ -148,6 +163,28 @@ class BusSectionFragment :
 
         binding.destinationTv.setOnClickListener {
             navigateToLocationsFragment(LocationDirection.DESTINATION)
+        }
+
+        binding.dateTv.setOnClickListener {
+            showDatePickerWithTheSelectedDate(viewModel.selectedDate)
+        }
+    }
+
+    private fun showDatePickerWithTheSelectedDate(selectedDate: Date) {
+        val constraintsBuilder =
+            CalendarConstraints.Builder()
+                .setValidator(DateValidatorPointForward.now())
+        val datePicker = MaterialDatePicker.Builder.datePicker()
+            .setSelection(selectedDate.time)
+            .setCalendarConstraints(constraintsBuilder.build())
+            .setTheme(R.style.Theme_OBilet_DatePickerStyle)
+            .build()
+        datePicker.show(childFragmentManager, "tag")
+        datePicker.addOnPositiveButtonClickListener { dateInMillis ->
+            // TODO: check if the selected date is today or tomorrow
+            // TODO: set the button colors by the selected date
+            viewModel.selectedDate = Date(dateInMillis)
+            viewModel.setSelectedDay(BusSectionDay.OTHER)
         }
     }
 
@@ -221,7 +258,7 @@ class BusSectionFragment :
         }
     }
 
-    fun onOriginDestinationSelected(direction: LocationDirection, location: BusLocation) {
+    private fun onOriginDestinationSelected(direction: LocationDirection, location: BusLocation) {
         val (origin, destination) = viewModel.originAndDestinationPair.value!!
         when (direction) {
             LocationDirection.ORIGIN -> {

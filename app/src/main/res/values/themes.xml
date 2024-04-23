@@ -46,4 +46,12 @@
         <item name="backgroundTint">@color/button_color</item>
         <item name="cornerRadius">4dp</item>
     </style>
+
+    <style name="Theme.OBilet.DatePickerStyle" parent="ThemeOverlay.Material3.MaterialCalendar">
+        <item name="colorPrimary">@color/primary_color</item>
+        <item name="colorOnPrimary">@color/on_primary</item>
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Material3.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Material3.MediumComponent</item>
+        <item name="fontFamily">@font/nunito_medium</item>
+    </style>
 </resources>

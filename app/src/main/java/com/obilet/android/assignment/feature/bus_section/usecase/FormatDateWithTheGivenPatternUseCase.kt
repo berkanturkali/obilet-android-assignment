@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class FormatDateWithTheGivenPatternUseCase @Inject constructor() {
     companion object {
-        private const val DEFAULT_PATTERN = "dd MMMM EEEE"
+        const val DEFAULT_PATTERN = "dd MMMM EEEE"
     }
 
     operator fun invoke(date: Date, pattern: String = DEFAULT_PATTERN): String {
