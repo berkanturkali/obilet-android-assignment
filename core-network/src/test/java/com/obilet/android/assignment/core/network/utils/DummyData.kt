@@ -4,6 +4,7 @@ import com.obilet.android.assignment.core.network.model.request.base.BaseRequest
 import com.obilet.android.assignment.core.network.model.request.device_session.DeviceSessionDTO
 import com.obilet.android.assignment.core.network.model.request.get_session.Application
 import com.obilet.android.assignment.core.network.model.request.get_session.GetSessionRequestModel
+import com.obilet.android.assignment.core.network.model.response.get_session.GetSessionDTO
 
 object DummyData {
 
@@ -21,5 +22,12 @@ object DummyData {
         deviceSessionDTO = DeviceSessionDTO(),
         date = "",
         language = "",
+    )
+
+    val sessionDTO = GetSessionDTO(
+        sessionId = "CUTta2j0/2Q+xn8D4rdNq2mm/MKZf2XbfGyR28nP5Ro=",
+        deviceId = "+hw7S4telFOY7zUV1bj+RD9O4jhE1X6b6YB1B/BixU8=",
+        deviceType = 0,
+        ipCountry = "TR"
     )
 }

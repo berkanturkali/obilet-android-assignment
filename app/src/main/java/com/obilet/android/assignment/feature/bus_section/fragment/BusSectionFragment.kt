@@ -1,6 +1,9 @@
 package com.obilet.android.assignment.feature.bus_section.fragment
 
+import android.os.Build
 import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.dynamicanimation.animation.DynamicAnimation
@@ -169,7 +172,6 @@ class BusSectionFragment :
             showDatePickerWithTheSelectedDate(viewModel.selectedDate)
         }
     }
-
     private fun showDatePickerWithTheSelectedDate(selectedDate: Date) {
         val constraintsBuilder =
             CalendarConstraints.Builder()

@@ -1,4 +1,4 @@
-package com.obilet.android.assignment.core.data.mapper.base
+package com.obilet.android.assignment.core.network.mapper.base
 
 import com.obilet.android.assignment.core.model.mapper.BaseMapper
 

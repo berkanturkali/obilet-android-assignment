@@ -1,6 +1,6 @@
-package com.obilet.android.assignment.core.data.mapper.getsession
+package com.obilet.android.assignment.core.network.mapper.getsession
 
-import com.obilet.android.assignment.core.data.mapper.base.RemoteResponseModelMapper
+import com.obilet.android.assignment.core.network.mapper.base.RemoteResponseModelMapper
 import com.obilet.android.assignment.core.model.getsession.Session
 import com.obilet.android.assignment.core.network.model.response.get_session.GetSessionDTO
 import javax.inject.Inject

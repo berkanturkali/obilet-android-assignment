@@ -1,6 +1,6 @@
-package com.obilet.android.assignment.core.data.mapper.bus_location
+package com.obilet.android.assignment.core.network.mapper.bus_location
 
-import com.obilet.android.assignment.core.data.mapper.base.RemoteResponseModelMapper
+import com.obilet.android.assignment.core.network.mapper.base.RemoteResponseModelMapper
 import com.obilet.android.assignment.core.model.bus_location.BusLocation
 import com.obilet.android.assignment.core.network.model.response.get_bus_locations.BusLocationDTO
 import javax.inject.Inject

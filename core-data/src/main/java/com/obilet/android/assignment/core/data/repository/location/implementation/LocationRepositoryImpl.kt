@@ -1,7 +1,7 @@
 package com.obilet.android.assignment.core.data.repository.location.implementation
 
 import com.obilet.android.assignment.core.data.ApiManager
-import com.obilet.android.assignment.core.data.mapper.bus_location.BusLocationRemoteResponseMapper
+import com.obilet.android.assignment.core.network.mapper.bus_location.BusLocationRemoteResponseMapper
 import com.obilet.android.assignment.core.data.repository.location.abstraction.LocationRepository
 import com.obilet.android.assignment.core.data.usecase.GenerateBaseRequestModelUseCase
 import com.obilet.android.assignment.core.model.Resource

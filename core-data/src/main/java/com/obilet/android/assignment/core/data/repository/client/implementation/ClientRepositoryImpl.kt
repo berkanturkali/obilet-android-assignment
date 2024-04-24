@@ -1,7 +1,7 @@
 package com.obilet.android.assignment.core.data.repository.client.implementation
 
 import com.obilet.android.assignment.core.data.ApiManager
-import com.obilet.android.assignment.core.data.mapper.getsession.SessionRemoteResponseMapper
+import com.obilet.android.assignment.core.network.mapper.getsession.SessionRemoteResponseMapper
 import com.obilet.android.assignment.core.data.repository.client.abstraction.ClientRepository
 import com.obilet.android.assignment.core.model.Resource
 import com.obilet.android.assignment.core.model.getsession.Session

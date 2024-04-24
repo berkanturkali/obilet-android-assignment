@@ -3,7 +3,7 @@ package com.obilet.android.assignment.core.data.repository.client.implementation
 import com.google.common.truth.Truth
 import com.obilet.android.assignment.core.data.R
 import com.obilet.android.assignment.core.data.datasource.FakeClientRemoteDataSource
-import com.obilet.android.assignment.core.data.mapper.getsession.SessionRemoteResponseMapper
+import com.obilet.android.assignment.core.network.mapper.getsession.SessionRemoteResponseMapper
 import com.obilet.android.assignment.core.data.repository.client.abstraction.ClientRepository
 import com.obilet.android.assignment.core.data.utils.DummyData
 import com.obilet.android.assignment.core.model.Resource

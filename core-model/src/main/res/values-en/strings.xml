@@ -5,4 +5,6 @@
     <string name="child">Child (2–11 Ages)</string>
     <string name="baby">Baby (0–2 Ages)</string>
     <string name="elder">> 65 Years Old</string>
+    <string name="duration">"%1$s h %2$s m "</string>
+    <string name="durationWithHour">%1$s h</string>
 </resources>

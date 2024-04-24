@@ -1,7 +1,7 @@
-package com.obilet.android.assignment.core.data.mapper.getsession
+package com.obilet.android.assignment.core.network.mapper.getsession
 
 import com.google.common.truth.Truth
-import com.obilet.android.assignment.core.data.utils.DummyData
+import com.obilet.android.assignment.core.network.utils.DummyData
 import org.junit.Test
 
 class SessionRemoteResponseMapperTest {
