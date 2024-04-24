@@ -22,4 +22,7 @@
     <string name="origin_and_destination_can_not_be_the_same">Başlangıç ve bitiş yönleri aynı seçilemez.\nLütfen farklı bir lokasyon seçiniz.</string>
     <string name="cancel">İptal Et</string>
     <string name="search">Ara</string>
+    <string name="review">İncele</string>
+    <string name="buy_ticket">Bilet Al</string>
+    <string name="close">Kapat</string>
 </resources>

@@ -33,7 +33,8 @@ internal fun Project.configureAndroidCompose(
                                 "androidx.compose.foundation.ExperimentalFoundationApi," +
                                 "androidx.compose.ui.ExperimentalComposeUiApi," +
                                 "androidx.compose.material.ExperimentalMaterialApi," +
-                                "androidx.compose.animation.ExperimentalAnimationApi,"
+                                "androidx.compose.animation.ExperimentalAnimationApi," +
+                                "androidx.compose.foundation.layout.ExperimentalLayoutApi,"
                         )
             }
         }

@@ -20,4 +20,7 @@
     <string name="origin_and_destination_can_not_be_the_same">Origin and destination can not be the same.\nPlease select another location.</string>
     <string name="cancel">Cancel</string>
     <string name="search">Search</string>
+    <string name="review">Review</string>
+    <string name="buy_ticket">Buy Ticket</string>
+    <string name="close">Close</string>
 </resources>
