@@ -2,9 +2,11 @@ package com.obilet.android.assignment.core.network.di
 
 import com.obilet.android.assignment.core.network.datasource.abstraction.ClientRemoteDataSource
 import com.obilet.android.assignment.core.network.datasource.abstraction.IpRemoteDataSource
+import com.obilet.android.assignment.core.network.datasource.abstraction.JourneyRemoteDataSource
 import com.obilet.android.assignment.core.network.datasource.abstraction.LocationRemoteDataSource
 import com.obilet.android.assignment.core.network.datasource.implementation.ClientRemoteDataSourceImpl
 import com.obilet.android.assignment.core.network.datasource.implementation.IpRemoteDataSourceImpl
+import com.obilet.android.assignment.core.network.datasource.implementation.JourneyRemoteDataSourceImpl
 import com.obilet.android.assignment.core.network.datasource.implementation.LocationRemoteDataSourceImpl
 import dagger.Binds
 import dagger.Module
@@ -25,5 +27,8 @@ interface RemoteDataSourceModule {
 
     @get:Binds
     val LocationRemoteDataSourceImpl.locationRemoteDataSource: LocationRemoteDataSource
+
+    @get:Binds
+    val JourneyRemoteDataSourceImpl.journeyRemoteDataSource: JourneyRemoteDataSource
 
 }
