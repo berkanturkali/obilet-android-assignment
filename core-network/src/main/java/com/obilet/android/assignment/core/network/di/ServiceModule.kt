@@ -2,6 +2,7 @@ package com.obilet.android.assignment.core.network.di
 
 import com.obilet.android.assignment.core.network.service.ClientService
 import com.obilet.android.assignment.core.network.service.IpService
+import com.obilet.android.assignment.core.network.service.JourneyService
 import com.obilet.android.assignment.core.network.service.LocationService
 import dagger.Module
 import dagger.Provides
@@ -26,6 +27,11 @@ object ServiceModule {
 
     @[Provides Singleton]
     fun provideLocationService(@Named(RetrofitModule.OBILET_RETROFIT_NAME) retrofit: Retrofit): LocationService {
+        return retrofit.create()
+    }
+
+    @[Provides Singleton]
+    fun provideJourneyService(@Named(RetrofitModule.OBILET_RETROFIT_NAME) retrofit: Retrofit): JourneyService {
         return retrofit.create()
     }
 }

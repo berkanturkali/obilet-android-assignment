@@ -29,7 +29,7 @@ fun FeatureItem(
         modifier = modifier
             .border(
                 0.3.dp,
-                color = colorResource(id = R.color.divider_color),
+                color = colorResource(id = R.color.button_color),
                 shape = CircleShape
             )
             .padding(horizontal = 4.dp, vertical = 2.dp),
