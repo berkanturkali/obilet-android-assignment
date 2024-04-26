@@ -1,6 +1,7 @@
 package com.obilet.android.assignment.core.network.datasource.implementation
 
 import com.obilet.android.assignment.core.network.datasource.abstraction.JourneyRemoteDataSource
+import com.obilet.android.assignment.core.network.model.request.base.BaseRequestModelDTO
 import com.obilet.android.assignment.core.network.model.request.get_bus_journeys.GetBusJourneysRequestModel
 import com.obilet.android.assignment.core.network.model.response.base.BaseResponseDTO
 import com.obilet.android.assignment.core.network.model.response.get_bus_journeys.BusJourneyDTO
@@ -11,7 +12,7 @@ import javax.inject.Inject
 class JourneyRemoteDataSourceImpl @Inject constructor(
     private val service: JourneyService
 ) : JourneyRemoteDataSource {
-    override suspend fun getBusJourneys(body: BaseResponseDTO<GetBusJourneysRequestModel>): Response<BaseResponseDTO<BusJourneyDTO>> {
+    override suspend fun getBusJourneys(body: BaseRequestModelDTO<GetBusJourneysRequestModel>): Response<BaseResponseDTO<List<BusJourneyDTO>>> {
         return service.getBusJourneys(body)
     }
 }

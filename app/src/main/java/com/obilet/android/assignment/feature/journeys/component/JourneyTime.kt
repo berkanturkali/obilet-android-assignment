@@ -21,7 +21,7 @@ fun JourneyTime(
         modifier = modifier,
         text = time,
         fontFamily = FontFamily(Font(R.font.nunito_semi_bold)),
-        fontSize = 18.sp,
+        fontSize = 14.sp,
         color = colorResource(
             id = R.color.secondary_text_color
         ),

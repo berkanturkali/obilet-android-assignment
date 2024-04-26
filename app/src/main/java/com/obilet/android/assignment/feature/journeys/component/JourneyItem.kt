@@ -29,17 +29,20 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.obilet.android.assignment.R
+import com.obilet.android.assignment.core.model.BusJourney
+import com.obilet.android.assignment.core.model.Stop
 
 const val EXPAND_ANIMATION_DURATION = 100
 
 @SuppressLint("UnusedTransitionTargetStateParameter")
 @Composable
 fun JourneyItem(
-    modifier: Modifier = Modifier
+    journey: BusJourney,
+    modifier: Modifier = Modifier,
+    onItemClick: () -> Unit,
 ) {
 
     var expanded by rememberSaveable {
@@ -68,47 +71,61 @@ fun JourneyItem(
         shape = RoundedCornerShape(12.dp)
     ) {
         Column(
-            modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
         ) {
             ConstraintLayout(
                 modifier = Modifier.fillMaxWidth(),
             ) {
-                val (logo, time, price, feature, duration) = createRefs()
-                BusFirmLogo(logo = R.drawable.ic_bus, modifier = Modifier.constrainAs(logo) {
-                    top.linkTo(parent.top, margin = 8.dp)
+                val (logo, time, price, busType, duration) = createRefs()
+                BusFirmLogo(url = journey.busFirmLogoUrl, modifier = Modifier.constrainAs(logo) {
+                    top.linkTo(parent.top)
                     start.linkTo(parent.start)
                 })
 
-                JourneyTime(time = "09:00", modifier = Modifier.constrainAs(time) {
-                    top.linkTo(logo.top)
-                    bottom.linkTo(logo.bottom)
-                    start.linkTo(parent.start)
-                    end.linkTo(parent.end)
-                })
+                journey.journeyDeparture?.let { departureTime ->
+                    JourneyTime(
+                        time = departureTime,
+                        modifier = Modifier.constrainAs(time) {
+                            top.linkTo(logo.top)
+                            bottom.linkTo(logo.bottom)
+                            start.linkTo(parent.start)
+                            end.linkTo(parent.end)
+                        })
+                }
 
-                JourneyPrice(price = "699 TL", modifier = Modifier.constrainAs(price) {
-                    top.linkTo(time.top)
-                    bottom.linkTo(time.bottom)
-                    end.linkTo(parent.end)
-                })
+                journey.journeyPrice?.let { journeyPrice ->
 
-                FeatureItem(feature = "2 + 1", modifier = Modifier.constrainAs(feature) {
-                    top.linkTo(logo.bottom, margin = 22.dp)
-                    start.linkTo(logo.start)
-                })
-                Duration(duration = "7s 30dk", modifier = Modifier.constrainAs(duration) {
-                    top.linkTo(feature.top)
-                    bottom.linkTo(feature.bottom)
-                    start.linkTo(parent.start)
-                    end.linkTo(parent.end)
-                })
+                    JourneyPrice(price = journeyPrice, modifier = Modifier.constrainAs(price) {
+                        top.linkTo(time.top)
+                        bottom.linkTo(time.bottom)
+                        end.linkTo(parent.end)
+                    })
+                }
 
+                journey.busType?.let { type ->
+
+                    BusType(type = type, modifier = Modifier.constrainAs(busType) {
+                        top.linkTo(logo.bottom, margin = 12.dp)
+                        start.linkTo(logo.start)
+                    })
+
+                }
+                journey.journeyDuration?.let { journeyDuration ->
+                    Duration(duration = journeyDuration, modifier = Modifier.constrainAs(duration) {
+                        top.linkTo(busType.top)
+                        bottom.linkTo(busType.bottom)
+                        start.linkTo(parent.start)
+                        end.linkTo(parent.end)
+                    })
+
+                }
             }
 
             Spacer(modifier = Modifier.height(8.dp))
 
 
-            OriginAndDestination(originAndDestination = "İzmir Otogarı > Ankara (Aşti) Otogarı")
+
+            OriginAndDestination(originAndDestination = "${journey.journeyOrigin} > ${journey.journeyDestination}")
 
             Spacer(modifier = Modifier.height(2.dp))
 
@@ -116,34 +133,32 @@ fun JourneyItem(
 
             Spacer(modifier = Modifier.height(6.dp))
 
-            Features(
-                features = listOf(
-                    "Molalı",
-                    "220 Voltluk Priz",
-                    "USB ile Şarj İmkanı",
-                    "Kablosuz Internet (WiFi)",
-                    "Koltuk ekraninda TV yayını",
-                    "Koltuk ekraninda müzik yayını",
-                    "Cep telefonu kullanımı serbest",
-                    "Rahat Koltuk"
-                ),
-                modifier = Modifier.align(Alignment.CenterHorizontally)
-            )
+            if (!journey.features.isNullOrEmpty()) {
+
+                Features(
+                    features = journey.features!!,
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                )
+
+                Spacer(modifier = Modifier.height(6.dp))
+
+                Divider(color = colorResource(id = R.color.divider_color), thickness = 0.5.dp)
+            }
 
             Spacer(modifier = Modifier.height(6.dp))
 
-            Divider(color = colorResource(id = R.color.divider_color), thickness = 0.5.dp)
-
-            Spacer(modifier = Modifier.height(6.dp))
-
-            ExpandableContent(visible = expanded)
+            ExpandableContent(visible = expanded, stops = journey.stops ?: emptyList())
 
             Spacer(modifier = Modifier.height(2.dp))
 
-            Box(modifier = Modifier.fillMaxWidth().height(IntrinsicSize.Min)) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(IntrinsicSize.Min)
+            ) {
 
                 BuyTicketButton(modifier = Modifier.align(Alignment.Center)) {
-
+                    onItemClick()
                 }
                 ReviewButton(
                     modifier = Modifier.align(Alignment.CenterEnd),
@@ -161,6 +176,7 @@ fun JourneyItem(
 @Composable
 private fun ExpandableContent(
     visible: Boolean,
+    stops: List<Stop>,
 ) {
     val enterTransition = remember {
         expandVertically(
@@ -181,12 +197,6 @@ private fun ExpandableContent(
     }
 
     AnimatedVisibility(visible = visible, enter = enterTransition, exit = exitTransition) {
-        JourneyTimeLineView(stopList = (0..5).map { "Esenler Terminali" })
+        JourneyTimeLineView(stopList = stops)
     }
-}
-
-@Preview
-@Composable
-fun JourneyItemPrev() {
-    JourneyItem()
 }

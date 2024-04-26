@@ -1,29 +1,44 @@
 package com.obilet.android.assignment.feature.journeys.component
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImagePainter
+import coil.compose.rememberAsyncImagePainter
+import coil.decode.SvgDecoder
+import coil.request.ImageRequest
 import com.obilet.android.assignment.R
+import com.obilet.android.assignment.core.model.Feature
 
 @Composable
 fun FeatureItem(
-    feature: String,
+    feature: Feature,
     modifier: Modifier = Modifier
 ) {
+
+    val painter = rememberAsyncImagePainter(
+        model = ImageRequest.Builder(LocalContext.current)
+            .data(feature.imageUrl)
+            .decoderFactory(SvgDecoder.Factory())
+            .crossfade(true)
+            .build()
+    )
 
     Row(
         modifier = modifier
@@ -37,29 +52,36 @@ fun FeatureItem(
         verticalAlignment = Alignment.CenterVertically
     ) {
 
-        Icon(
-            painter = painterResource(id = R.drawable.ic_time),
-            contentDescription = null,
-            tint = colorResource(
-                id = R.color.icon_primary_color
+        feature.imageUrl?.let {
+            if (painter.state !is AsyncImagePainter.State.Error) {
+                Image(
+                    painter = painter,
+                    contentDescription = null,
+                    modifier = Modifier.size(20.dp),
+                )
+            } else {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_image),
+                    contentDescription = null,
+                    modifier = Modifier.size(20.dp),
+                    tint = colorResource(
+                        id = R.color.icon_primary_color
+                    )
+                )
+            }
+        }
+
+        feature.name?.let { name ->
+            Text(
+                text = name,
+                fontFamily = FontFamily(Font(R.font.nunito_bold)),
+                color = colorResource(
+                    id = R.color.primary_text_color
+                ),
+                fontSize = 10.sp
             )
-        )
 
-        Text(
-            text = feature,
-            fontFamily = FontFamily(Font(R.font.nunito_medium)),
-            color = colorResource(
-                id = R.color.primary_text_color
-            ),
-            fontSize = 8.sp
-        )
-
+        }
     }
 
-}
-
-@Preview
-@Composable
-fun FeatureItemPrev() {
-    FeatureItem(feature = "Kablosuz Internet (WiFi)")
 }

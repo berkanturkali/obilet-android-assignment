@@ -41,7 +41,7 @@ fun BusType(
             color = colorResource(
                 id = R.color.primary_text_color
             ),
-            fontSize = 14.sp
+            fontSize = 12.sp
         )
     }
 

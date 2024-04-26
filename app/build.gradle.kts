@@ -63,7 +63,10 @@ dependencies {
         libs.androidx.compose.constraint.layout,
         libs.androidx.compose.runtime.livedata,
         libs.jakewharton.timber,
-        libs.androidx.view.pager
+        libs.androidx.view.pager,
+        libs.coil.compose,
+        libs.coil.svg,
+        libs.lottie.compose
     )
 
     implementAllUnitTests(

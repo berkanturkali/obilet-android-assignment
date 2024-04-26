@@ -2,6 +2,7 @@ package com.obilet.android.assignment.core.network.service
 
 import com.obilet.android.assignment.core.network.BuildConfig.BASE_URL
 import com.obilet.android.assignment.core.network.endpoint.JourneyServiceEndpoints
+import com.obilet.android.assignment.core.network.model.request.base.BaseRequestModelDTO
 import com.obilet.android.assignment.core.network.model.request.get_bus_journeys.GetBusJourneysRequestModel
 import com.obilet.android.assignment.core.network.model.response.base.BaseResponseDTO
 import com.obilet.android.assignment.core.network.model.response.get_bus_journeys.BusJourneyDTO
@@ -20,5 +21,5 @@ import retrofit2.http.POST
  */
 interface JourneyService {
     @POST(JourneyServiceEndpoints.GET_BUS_JOURNEYS_ENDPOINT)
-    suspend fun getBusJourneys(@Body body: BaseResponseDTO<GetBusJourneysRequestModel>): Response<BaseResponseDTO<BusJourneyDTO>>
+    suspend fun getBusJourneys(@Body body: BaseRequestModelDTO<GetBusJourneysRequestModel>): Response<BaseResponseDTO<List<BusJourneyDTO>>>
 }

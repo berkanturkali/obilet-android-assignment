@@ -1,9 +1,6 @@
 package com.obilet.android.assignment.feature.bus_section.fragment
 
-import android.os.Build
 import android.os.Bundle
-import android.os.VibrationEffect
-import android.os.Vibrator
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.dynamicanimation.animation.DynamicAnimation
@@ -22,6 +19,7 @@ import com.obilet.android.assignment.core.model.bus_location.BusLocation
 import com.obilet.android.assignment.databinding.FragmentBusSectionBinding
 import com.obilet.android.assignment.feature.base.BaseFragment
 import com.obilet.android.assignment.feature.bus_section.viewmodel.BusSectionFragmentViewModel
+import com.obilet.android.assignment.feature.journeys.args.BusJourneysFragmentArgs
 import com.obilet.android.assignment.feature.location.args.LocationsFragmentArgs
 import com.obilet.android.assignment.feature.location.fragment.LocationsFragment
 import com.obilet.android.assignment.feature.location.model.LocationDirection
@@ -35,6 +33,10 @@ import java.util.Date
 @AndroidEntryPoint
 class BusSectionFragment :
     BaseFragment<FragmentBusSectionBinding>(FragmentBusSectionBinding::inflate) {
+
+    companion object {
+        private const val DEPARTURE_DATE_PATTERN = "yyyy-MM-dd"
+    }
 
     private val searchFragmentViewModel by viewModels<SearchFragmentViewModel>(ownerProducer = { requireParentFragment() })
 
@@ -171,7 +173,33 @@ class BusSectionFragment :
         binding.dateTv.setOnClickListener {
             showDatePickerWithTheSelectedDate(viewModel.selectedDate)
         }
+
+        binding.findTicketBtn.setOnClickListener {
+            navigateToBusJourneysFragment()
+        }
     }
+
+    private fun navigateToBusJourneysFragment() {
+        viewModel.originAndDestinationPair.value?.let {
+            val (origin, destination) = it
+            if (origin?.id != null && destination?.id != null) {
+                val action = SearchFragmentDirections.actionSearchFragmentToBusJourneysFragment(
+                    BusJourneysFragmentArgs(
+                        originId = origin.id!!,
+                        destinationId = destination.id!!,
+                        departureDate = viewModel.formatTheDateWithTheGivenPattern(
+                            viewModel.selectedDate,
+                            DEPARTURE_DATE_PATTERN
+                        ),
+                        originName = origin.name,
+                        destinationName = destination.name
+                    )
+                )
+                findNavController().navigate(action)
+            }
+        }
+    }
+
     private fun showDatePickerWithTheSelectedDate(selectedDate: Date) {
         val constraintsBuilder =
             CalendarConstraints.Builder()

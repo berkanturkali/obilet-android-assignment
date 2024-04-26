@@ -4,6 +4,7 @@ import android.content.Context
 import com.obilet.android.assignment.core.model.BusJourney
 import com.obilet.android.assignment.core.model.Currency
 import com.obilet.android.assignment.core.model.R.string
+import com.obilet.android.assignment.core.network.BuildConfig
 import com.obilet.android.assignment.core.network.mapper.base.RemoteResponseModelMapper
 import com.obilet.android.assignment.core.network.model.response.get_bus_journeys.BusJourneyDTO
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -22,6 +23,8 @@ class BusJourneyRemoteResponseMapper @Inject constructor(
         private const val TIME_PATTERN = "HH:mm:ss"
         private const val HOUR_PATTERN = "H"
         private const val MIN_PATTERN = "m"
+        private const val DEPARTURE_RESPONSE_PATTERN = "yyyy-MM-dd'T'HH:mm:ss"
+        private const val DEPARTURE_PATTERN = "HH:mm"
     }
 
     private val timeFormatter = SimpleDateFormat(TIME_PATTERN, Locale.getDefault())
@@ -29,6 +32,11 @@ class BusJourneyRemoteResponseMapper @Inject constructor(
     private val hourFormatter = SimpleDateFormat(HOUR_PATTERN, Locale.getDefault())
 
     private val minuteFormatter = SimpleDateFormat(MIN_PATTERN, Locale.getDefault())
+
+    private val departureDateTimeFormatter =
+        SimpleDateFormat(DEPARTURE_RESPONSE_PATTERN, Locale.getDefault())
+
+    private val departureTimeFormatter = SimpleDateFormat(DEPARTURE_PATTERN, Locale.getDefault())
 
     override fun mapFromModel(model: BusJourneyDTO): BusJourney {
         return BusJourney(
@@ -41,7 +49,7 @@ class BusJourneyRemoteResponseMapper @Inject constructor(
             availableSeats = model.availableSeats,
             journeyOrigin = model.journey?.origin,
             journeyDestination = model.journey?.destination,
-            journeyDeparture = model.journey?.departure,
+            journeyDeparture = formatDepartureTime(model.journey?.departure),
             journeyArrival = model.journey?.arrival,
             journeyDuration = formatDurationForDisplay(model.journey?.duration),
             journeyPrice = formatThePrice(
@@ -54,9 +62,8 @@ class BusJourneyRemoteResponseMapper @Inject constructor(
             originLocationId = model.originLocationId,
             destinationLocationId = model.destinationLocationId,
             stops = stopRemoteResponseMapper.mapModelList(model.journey?.stops ?: emptyList()),
-            features = featureRemoteResponseMapper.mapModelList(model.features ?: emptyList())
-
-
+            features = featureRemoteResponseMapper.mapModelList(model.features ?: emptyList()),
+            busFirmLogoUrl = BuildConfig.BUS_FIRM_IMAGE_BASE_URL + model.partnerId?.toString() + "-sm.png"
         )
     }
 
@@ -85,21 +92,33 @@ class BusJourneyRemoteResponseMapper @Inject constructor(
         return price?.let {
             when (currency) {
                 Currency.TRY.isoCode -> {
-                    price + " " + Currency.TRY.symbol
+                    price + Currency.TRY.symbol
                 }
 
                 Currency.USD.isoCode -> {
-                    price + " " + Currency.USD.symbol
+                    price + Currency.USD.symbol
                 }
 
                 Currency.EUR.isoCode -> {
-                    price + " " + Currency.EUR.symbol
+                    price + Currency.EUR.symbol
                 }
 
                 else -> {
                     price
                 }
             }
+        }
+    }
+
+    private fun formatDepartureTime(departureDateTime: String?): String? {
+        return try {
+            departureDateTime?.let {
+                val date = departureDateTimeFormatter.parse(departureDateTime)
+                departureTimeFormatter.format(date)
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
         }
     }
 }

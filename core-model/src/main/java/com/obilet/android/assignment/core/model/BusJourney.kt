@@ -19,6 +19,7 @@ data class BusJourney(
     val destinationLocation: String? = null,
     val originLocationId: Int? = null,
     val destinationLocationId: Int? = null,
+    val busFirmLogoUrl: String? = null,
     val stops: List<Stop>? = null,
     val features: List<Feature>? = null,
 )

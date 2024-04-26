@@ -26,11 +26,11 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
 import androidx.constraintlayout.compose.Dimension
 import com.obilet.android.assignment.R
+import com.obilet.android.assignment.core.model.Stop
 
 @Composable
 fun JourneyTimeLineItem(
-    time: String,
-    stop: String,
+    stop: Stop,
     modifier: Modifier = Modifier,
     firstItem: Boolean = false,
     lastItem: Boolean = false,
@@ -39,7 +39,12 @@ fun JourneyTimeLineItem(
     val lineColor = colorResource(id = R.color.primary_color)
 
     BoxWithConstraints(modifier = modifier.fillMaxWidth()) {
-        ConstraintLayout(constraintSet = constraints(), modifier = Modifier.width(maxWidth).wrapContentHeight()) {
+        ConstraintLayout(
+            constraintSet = constraints(),
+            modifier = Modifier
+                .width(maxWidth)
+                .wrapContentHeight()
+        ) {
 
             Canvas(
                 modifier = Modifier
@@ -63,20 +68,22 @@ fun JourneyTimeLineItem(
             Box(
                 modifier = Modifier
                     .background(color = lineColor, shape = CircleShape)
-                    .size(14.dp)
+                    .size(22.dp)
                     .layoutId("indicator")
             )
+            stop.time?.let {
 
-            Text(
-                modifier = Modifier.layoutId("indicatorContent"),
-                text = time,
-                fontFamily = FontFamily(Font(R.font.nunito_semi_bold)),
-                color = colorResource(
-                    id = R.color.on_primary
-                ),
-                fontSize = 4.sp,
-                textAlign = TextAlign.Center
-            )
+                Text(
+                    modifier = Modifier.layoutId("indicatorContent"),
+                    text = it,
+                    fontFamily = FontFamily(Font(R.font.nunito_semi_bold)),
+                    color = colorResource(
+                        id = R.color.on_primary
+                    ),
+                    fontSize = 6.sp,
+                    textAlign = TextAlign.Center
+                )
+            }
 
             Stop(stop = stop, modifier = Modifier.layoutId("content"))
 

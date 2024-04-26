@@ -20,7 +20,7 @@ fun JourneyPrice(
         modifier = modifier,
         text = price,
         fontFamily = FontFamily(Font(R.font.nunito_bold)),
-        fontSize = 24.sp,
+        fontSize = 16.sp,
         color = colorResource(
             id = R.color.secondary_text_color
         )

@@ -20,6 +20,13 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_searchFragment_to_busJourneysFragment"
+            app:destination="@id/busJourneysFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <dialog
         android:id="@+id/flightSectionSelectPassengerDialog"
@@ -34,5 +41,14 @@
         <argument
             android:name="locationsFragmentArgs"
             app:argType="com.obilet.android.assignment.feature.location.args.LocationsFragmentArgs" />
+    </fragment>
+    <fragment
+        android:id="@+id/busJourneysFragment"
+        android:name="com.obilet.android.assignment.feature.journeys.fragment.BusJourneysFragment"
+        android:label="BusJourneysFragment"
+        tools:layout="@layout/fragment_bus_journeys">
+        <argument
+            android:name="busJourneysFragmentArgs"
+            app:argType="com.obilet.android.assignment.feature.journeys.args.BusJourneysFragmentArgs" />
     </fragment>
 </navigation>

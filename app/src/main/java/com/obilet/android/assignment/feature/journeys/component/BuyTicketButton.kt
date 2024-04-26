@@ -30,14 +30,14 @@ fun BuyTicketButton(
             R.color.button_color
         ),
         contentColor = colorResource(id = R.color.button_text_color),
-        shape = RoundedCornerShape(2.dp)
+        shape = RoundedCornerShape(16.dp)
     ) {
         Text(
             modifier = Modifier
-                .padding(horizontal = 32.dp, vertical = 5.dp),
+                .padding(horizontal = 32.dp, vertical = 6.dp),
             text = stringResource(id = R.string.buy_ticket),
             fontFamily = FontFamily(Font(R.font.nunito_medium)),
-            fontSize = 8.sp,
+            fontSize = 12.sp,
             textAlign = TextAlign.Center
         )
     }

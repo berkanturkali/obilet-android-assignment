@@ -25,6 +25,8 @@ androidXRoom = "2.6.1"
 androidXComposeLiveData = "1.6.1"
 timber = "5.0.1"
 androidXViewPager = "1.1.0-beta01"
+coil = "2.6.0"
+lottieCompose = "6.4.0"
 
 
 [libraries]
@@ -60,7 +62,10 @@ androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = 
 androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "androidXRoom" }
 androidx-compose-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata", version.ref = "androidXComposeLiveData" }
 jakewharton-timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
-androidx-view-pager = {group = "androidx.viewpager2", name = "viewpager2", version.ref = "androidXViewPager"}
+androidx-view-pager = { group = "androidx.viewpager2", name = "viewpager2", version.ref = "androidXViewPager" }
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+coil-svg = { group = "io.coil-kt", name = "coil-svg", version.ref = "coil" }
+lottie-compose = { group = "com.airbnb.android", name = "lottie-compose", version.ref = "lottieCompose" }
 
 
 

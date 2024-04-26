@@ -16,6 +16,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("String", "OUTBOUND_IP_URL", "\"https://api.ipify.org/\"")
         buildConfigField("String", "FEATURE_IMAGE_BASE_URL", "\"https://s3.eu-central-1.amazonaws.com/static.obilet.com/images/feature/\"")
+        buildConfigField("String", "BUS_FIRM_IMAGE_BASE_URL", "\"https://s3.eu-central-1.amazonaws.com/static.obilet.com/images/partner/\"")
     }
     buildTypes.getByName(Debug.name)
         .buildConfigField("String", "BASE_URL", "\"https://v2-api.obilet.com/api/\"")
