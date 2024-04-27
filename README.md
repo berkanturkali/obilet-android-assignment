@@ -36,3 +36,16 @@
 * [Coil](https://coil-kt.github.io/coil/)
 * [Dagger Hilt](https://dagger.dev/hilt/)
 
+## Module Structure
+| Module name                    | Type                | Description                                                                                                            |
+|--------------------------------|---------------------|------------------------------------------------------------------------------------------------------------------------|
+| [app](/app/)                   | Android Application | Contains all features and binds all of the modules.                                                                    |
+| [core-network](/core-network/) | Android Library     | This module contains network related classes such as services, remote data sources, endpoints.                         |
+| [core-cache](/core-cache/)     | Android Library     | This module contains cache related classes such as room dao, entity models & cache data sources.                       |
+| [core-data](/core-data/)       | Android Library     | This module contains data related classes such as repositories. Also this module connects remote & cache data sources. |
+| [core-model](/core-model/)     | Android Library     | This module contains model classes that will be used on the presentation layer.                                        |
+| [core-storage](/core-storage/) | Android Library     | This module contains storage related classes.                                                                          |
+
+<img src="assets/modules.png" alt="modules" width="850"/>
+
+
