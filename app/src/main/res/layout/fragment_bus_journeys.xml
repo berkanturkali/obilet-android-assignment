@@ -24,8 +24,8 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/backBtnCv"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         android:layout_margin="16dp"
         android:backgroundTint="#44FFFFFF"
         app:cardCornerRadius="32dp"
