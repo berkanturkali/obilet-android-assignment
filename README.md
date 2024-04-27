@@ -13,3 +13,26 @@
 |                                 Passenger Filter                                 |
 |:--------------------------------------------------------------------------------:|
 | <img src="gifs/passenger_filter_dialog.gif" alt="passenger_filter" width="250"/> |
+
+## Tech Features & Libraries
+
+* MVVM Architecture
+* XML with Jetpack Compose
+* Multi-module
+* Kotlin Gradle DSL
+* Kotlin Coroutines & Flow
+* LiveData
+
+### Libraries
+* [Jetpack Compose](https://developer.android.com/develop/ui/compose/setup)
+* [Navigation Component](https://developer.android.com/guide/navigation/navigation-getting-started)
+* [Retrofit](https://square.github.io/retrofit/)
+* [Moshi](https://github.com/square/moshi)
+* [okhttp](https://github.com/square/okhttp)
+* [MockWebServer](https://github.com/square/okhttp/tree/master/mockwebserver)
+* [Truth](https://truth.dev/)
+* [Room](https://developer.android.com/training/data-storage/room)
+* [Timber](https://github.com/JakeWharton/timber)
+* [Coil](https://coil-kt.github.io/coil/)
+* [Dagger Hilt](https://dagger.dev/hilt/)
+
