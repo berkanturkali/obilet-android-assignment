@@ -39,9 +39,9 @@ class FlightSectionFragmentViewModel @Inject constructor(
 
     val departureDate: LiveData<Date> get() = _departureDate
 
-    private val _returnDate = MutableLiveData<Triple<String, String, String>?>()
+    private val _returnDate = MutableLiveData<Date?>()
 
-    val returnDate: LiveData<Triple<String, String, String>?> get() = _returnDate
+    val returnDate: LiveData<Date?> get() = _returnDate
 
     private val _selectedPassengerFilters = MutableLiveData<List<Pair<Int, Int>>>()
 
@@ -54,20 +54,24 @@ class FlightSectionFragmentViewModel @Inject constructor(
 
     init {
         getPassengerFilterListOrCreateNewList()
-        setDepartureDate()
+        setDepartureDate(getTomorrowDate())
+        setReturnDate(null)
     }
 
-    fun setDepartureDate() {
-        val tomorrowDate = getTodayOrTomorrowDateUseCase(isTomorrow = true)
-        _departureDate.value = tomorrowDate
+    fun setDepartureDate(date: Date) {
+        _departureDate.value = date
     }
 
-    fun formatDepartureDate(departureDate: Date): Triple<String, String, String> {
-        val departureDate = formatDateWithTheGivenPatternUseCase(date = departureDate)
-        val tomorrowAsList = departureDate.split(DATE_DELIMITER)
-        val day = tomorrowAsList.first()
-        val month = tomorrowAsList[1]
-        val dayOfTheWeek = tomorrowAsList[2]
+    fun setReturnDate(date: Date?) {
+        _returnDate.value = date
+    }
+
+    fun formatDepartureOrReturnDate(date: Date): Triple<String, String, String> {
+        val formattedDate = formatDateWithTheGivenPatternUseCase(date = date)
+        val dateAsList = formattedDate.split(DATE_DELIMITER)
+        val day = dateAsList.first()
+        val month = dateAsList[1]
+        val dayOfTheWeek = dateAsList[2]
         return Triple(day, month, dayOfTheWeek)
     }
 
@@ -100,5 +104,7 @@ class FlightSectionFragmentViewModel @Inject constructor(
     fun setOriginAndDestination(originAndDestinationPair: Pair<BusLocation?, BusLocation?>) {
         _originAndDestinationPair.value = originAndDestinationPair
     }
+
+    fun getTomorrowDate() = getTodayOrTomorrowDateUseCase(isTomorrow = true)
 
 }
