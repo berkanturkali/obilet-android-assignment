@@ -9,7 +9,7 @@ plugins {
     alias(libs.plugins.obilet.android.hilt)
     alias(libs.plugins.obilet.android.application.compose)
     id("kotlin-parcelize")
-    id("androidx.navigation.safeargs")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -66,7 +66,6 @@ dependencies {
         libs.androidx.view.pager,
         libs.coil.compose,
         libs.coil.svg,
-        libs.lottie.compose
     )
 
     implementAllUnitTests(

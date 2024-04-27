@@ -28,6 +28,7 @@ import com.obilet.android.assignment.feature.search.fragment.SearchFragmentDirec
 import com.obilet.android.assignment.feature.search.viewmodel.SearchFragmentViewModel
 import com.obilet.android.assignment.utils.getNavigationResult
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.Calendar
 import java.util.Date
 
 @AndroidEntryPoint
@@ -211,11 +212,36 @@ class BusSectionFragment :
             .build()
         datePicker.show(childFragmentManager, "tag")
         datePicker.addOnPositiveButtonClickListener { dateInMillis ->
-            // TODO: check if the selected date is today or tomorrow
-            // TODO: set the button colors by the selected date
-            viewModel.selectedDate = Date(dateInMillis)
-            viewModel.setSelectedDay(BusSectionDay.OTHER)
+            if (MaterialDatePicker.todayInUtcMilliseconds() == dateInMillis) {
+                viewModel.selectedDate = Date(dateInMillis)
+                viewModel.setSelectedDay(BusSectionDay.TODAY)
+            } else {
+                val tomorrow =
+                    viewModel.formatTheDateWithTheGivenPattern(
+                        getTomorrowDate(),
+                        DEPARTURE_DATE_PATTERN
+                    )
+
+                val selectedDateAsDate =
+                    viewModel.formatTheDateWithTheGivenPattern(
+                        Date(dateInMillis),
+                        DEPARTURE_DATE_PATTERN
+                    )
+                if (selectedDateAsDate == tomorrow) {
+                    viewModel.selectedDate = Date(dateInMillis)
+                    viewModel.setSelectedDay(BusSectionDay.TOMORROW)
+                } else {
+                    viewModel.selectedDate = Date(dateInMillis)
+                    viewModel.setSelectedDay(BusSectionDay.OTHER)
+                }
+            }
         }
+    }
+
+    private fun getTomorrowDate(): Date {
+        val calendar = Calendar.getInstance()
+        calendar.add(Calendar.DAY_OF_YEAR, 1)
+        return calendar.time
     }
 
     private fun navigateToLocationsFragment(direction: LocationDirection) {
