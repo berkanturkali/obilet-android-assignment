@@ -131,7 +131,7 @@ class LocationsFragment : BaseFragment<FragmentLocationsBinding>(FragmentLocatio
             findNavController().navigateUp()
         }
 
-        binding.scrollToTopBtn.setOnClickListener {
+        binding.scrollToTopCv.setOnClickListener {
             binding.locationsRv.scrollToPosition(0)
         }
 
