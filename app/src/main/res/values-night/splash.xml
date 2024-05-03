@@ -2,8 +2,8 @@
 <resources>
 
     <style name="Theme.OBilet.Splash" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/black</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_logo_night</item>
+        <item name="windowSplashScreenBackground">@color/splash_background_color</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_logo_night_secondary</item>
         <item name="postSplashScreenTheme">@style/Theme.OBilet</item>
     </style>
 

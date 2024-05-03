@@ -85,7 +85,7 @@ class BusSectionFragment :
             when (day!!) {
                 BusSectionDay.TODAY -> {
                     setTomorrowButtonColors(
-                        textColor = R.color.button_color, backgroundColor = R.color.on_primary
+                        textColor = R.color.button_color, backgroundColor = R.color.bus_section_date_button_unselected_background_color
                     )
                     setTodayButtonColors(
                         textColor = R.color.button_text_color,
@@ -100,7 +100,7 @@ class BusSectionFragment :
                         backgroundColor = R.color.button_color
                     )
                     setTodayButtonColors(
-                        textColor = R.color.button_color, backgroundColor = R.color.on_primary
+                        textColor = R.color.button_color, backgroundColor = R.color.bus_section_date_button_unselected_background_color
                     )
                     setDateText(viewModel.getTodayOrderTomorrowDate(true))
                 }
@@ -108,10 +108,10 @@ class BusSectionFragment :
                 BusSectionDay.OTHER -> {
                     setTomorrowButtonColors(
                         textColor = R.color.button_color,
-                        backgroundColor = R.color.on_primary
+                        backgroundColor = R.color.bus_section_date_button_unselected_background_color
                     )
                     setTodayButtonColors(
-                        textColor = R.color.button_color, backgroundColor = R.color.on_primary
+                        textColor = R.color.button_color, backgroundColor = R.color.bus_section_date_button_unselected_background_color
                     )
                     setDateText(viewModel.formatTheDateWithTheGivenPattern(viewModel.selectedDate))
                 }

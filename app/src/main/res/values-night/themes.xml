@@ -1,7 +1,57 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <!-- Base application theme. -->
     <style name="Base.Theme.OBilet" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="android:statusBarColor">@color/primary_color</item>
+    </style>
+
+    <style name="Theme.OBilet.CardStyle">
+        <item name="android:backgroundTint">@color/cardview_background_color</item>
+        <item name="cardCornerRadius">8dp</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="cardElevation">2dp</item>
+        <item name="strokeColor">@color/cardview_stroke_color</item>
+    </style>
+
+    <style name="Theme.OBilet.FilterCardStyle" parent="Theme.OBilet.CardStyle" />
+
+
+    <style name="Theme.OBilet.LocationItemCardStyle" parent="Theme.OBilet.CardStyle" />
+
+    <style name="Theme.OBilet.LocationTextStyle" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/primary_text_color</item>
+        <item name="fontFamily">@font/nunito_bold</item>
+    </style>
+
+    <style name="Theme.OBilet.SearchBarCardViewStyle">
+        <item name="android:backgroundTint">@color/searchbar_background_color</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="strokeColor">@color/divider_color</item>
+        <item name="cardCornerRadius">32dp</item>
+        <item name="cardElevation">8dp</item>
+    </style>
+
+    <style name="Theme.OBilet.ScrollToTopButtonCardViewStyle">
+        <item name="android:backgroundTint">@color/background_color</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="strokeColor">@color/divider_color</item>
+    </style>
+
+
+    <style name="Theme.OBilet.SwitchDirectionButtonStyle">
+        <item name="android:backgroundTint">@color/background_color</item>
+        <item name="cardElevation">8dp</item>
+        <item name="strokeColor">@color/divider_color</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
+    <style name="Theme.OBilet.DateButtonStyle" parent="@style/Widget.Material3.Button.OutlinedButton">
+        <item name="fontFamily">@font/nunito_semi_bold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="cornerRadius">4dp</item>
+        <item name="backgroundTint">@color/bus_section_date_button_unselected_background_color</item>
+        <item name="android:textColor">@color/button_color</item>
+        <item name="strokeColor">@color/button_color</item>
     </style>
 </resources>

@@ -22,7 +22,7 @@ fun JourneyPrice(
         fontFamily = FontFamily(Font(R.font.nunito_bold)),
         fontSize = 16.sp,
         color = colorResource(
-            id = R.color.secondary_text_color
+            id = R.color.primary_text_color
         )
     )
 

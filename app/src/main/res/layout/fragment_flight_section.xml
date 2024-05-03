@@ -128,31 +128,23 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/switchDirectionsCv"
+            style="@style/Theme.OBilet.SwitchDirectionButtonStyle"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginEnd="12dp"
-            android:backgroundTint="#88FFFFFF"
-            app:cardElevation="8dp"
             app:layout_constraintBottom_toTopOf="@id/destinationCV"
             app:layout_constraintEnd_toEndOf="@id/originCV"
-            app:layout_constraintTop_toBottomOf="@id/originCV"
-            app:strokeColor="@color/primary_text_color"
-            app:strokeWidth="1dp">
+            app:layout_constraintTop_toBottomOf="@id/originCV">
 
-            <com.google.android.material.button.MaterialButton
+            <ImageView
                 android:id="@+id/switchDirectionsBtn"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:backgroundTint="@android:color/transparent"
-                android:insetLeft="0dp"
-                android:insetTop="0dp"
-                android:insetRight="0dp"
-                android:insetBottom="0dp"
-                app:icon="@drawable/ic_swap"
-                app:iconGravity="textStart"
-                app:iconPadding="0dp"
-                app:iconTint="@color/primary_text_color"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.OBilet.Button.Rounded" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="4dp"
+                android:src="@drawable/ic_swap"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.OBilet.Button.Rounded"
+                app:tint="@color/icon_secondary_color" />
         </com.google.android.material.card.MaterialCardView>
 
 
@@ -285,14 +277,14 @@
                     android:id="@+id/addOrRemoveBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_add"
-                    android:padding="8dp"
                     android:clickable="true"
+                    android:focusable="true"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_add"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/icon_secondary_color"
-                    android:focusable="true" />
+                    app:tint="@color/icon_secondary_color" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

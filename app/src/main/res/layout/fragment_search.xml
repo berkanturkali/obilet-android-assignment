@@ -22,29 +22,27 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.15" />
 
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/divider_color"
+        app:layout_constraintBottom_toBottomOf="@id/toolbarHeightGuideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/toolbarHeightGuideline" />
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
+        style="@style/Theme.OBilet.TabLayoutStyle"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="56dp"
         android:layout_marginEnd="56dp"
-        android:background="@drawable/tab_layout_bg"
         android:elevation="8dp"
         app:layout_constraintBottom_toBottomOf="@id/toolbarHeightGuideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/toolbarHeightGuideline"
-        app:tabGravity="fill"
-        app:tabIconTint="@color/tab_icon_color"
-        app:tabIndicator="@drawable/tab_indicator_bg"
-        app:tabIndicatorColor="@android:color/transparent"
-        app:tabIndicatorFullWidth="true"
-        app:tabIndicatorGravity="stretch"
-        app:tabInlineLabel="true"
-        app:tabMode="fixed"
-        app:tabRippleColor="@null"
-        app:tabSelectedTextColor="@color/on_primary"
-        app:tabTextAppearance="@style/Theme.OBilet.TabTextStyle" />
+        app:layout_constraintTop_toTopOf="@id/toolbarHeightGuideline" />
 
 
     <androidx.viewpager2.widget.ViewPager2

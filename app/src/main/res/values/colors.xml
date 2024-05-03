@@ -15,4 +15,23 @@
     <color name="divider_color">#D9D9D9</color>
     <color name="icon_secondary_color">@color/primary_text_color</color>
     <color name="primary_text_color_with_half_opacity">#505D686E</color>
+    <color name="container_background_color">@color/on_primary</color>
+
+    <!-- Tab Layout -->
+    <color name="tab_layout_background_color">@color/on_primary</color>
+
+
+    <!-- Card View -->
+    <color name="cardview_background_color">@color/on_primary</color>
+    <color name="cardview_stroke_color">@color/divider_color</color>
+
+    <!-- Search Bar -->
+    <color name="searchbar_background_color">@color/background_color</color>
+    <color name="searchbar_clear_text_button_color">@color/primary_color</color>
+    <color name="searchbar_drawable_tint_color">@color/icon_primary_color</color>
+
+    <color name="location_item_see_on_map_button_icon_color">#D23B38</color>
+    <color name="location_item_see_on_map_button_text_color">#1f9b78</color>
+
+    <color name="bus_section_date_button_unselected_background_color">@android:color/transparent</color>
 </resources>

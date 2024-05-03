@@ -27,15 +27,13 @@
         <item name="fontFamily">@font/nunito_semi_bold</item>
         <item name="android:textSize">12sp</item>
         <item name="cornerRadius">4dp</item>
-        <item name="backgroundTint">@color/on_primary</item>
+        <item name="backgroundTint">@color/bus_section_date_button_unselected_background_color
+        </item>
         <item name="android:textColor">@color/button_color</item>
         <item name="strokeColor">@color/button_color</item>
     </style>
 
-    <style name="Theme.OBilet.FilterCardStyle">
-        <item name="background">@android:color/transparent</item>
-        <item name="android:backgroundTint">@color/on_primary</item>
-        <item name="cardCornerRadius">4dp</item>
+    <style name="Theme.OBilet.FilterCardStyle" parent="Theme.OBilet.CardStyle">
         <item name="strokeWidth">0dp</item>
         <item name="cardElevation">2dp</item>
     </style>
@@ -50,8 +48,63 @@
     <style name="Theme.OBilet.DatePickerStyle" parent="ThemeOverlay.Material3.MaterialCalendar">
         <item name="colorPrimary">@color/primary_color</item>
         <item name="colorOnPrimary">@color/on_primary</item>
-        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Material3.SmallComponent</item>
-        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.Material3.MediumComponent</item>
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.Material3.SmallComponent
+        </item>
+        <item name="shapeAppearanceMediumComponent">
+            @style/ShapeAppearance.Material3.MediumComponent
+        </item>
         <item name="fontFamily">@font/nunito_medium</item>
     </style>
+
+    <style name="Theme.OBilet.CardStyle">
+        <item name="android:backgroundTint">@color/cardview_background_color</item>
+        <item name="cardCornerRadius">8dp</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="cardElevation">2dp</item>
+    </style>
+
+    <style name="Theme.OBilet.TabLayoutStyle">
+        <item name="android:background">@drawable/tab_layout_bg</item>
+        <item name="tabIconTint">@color/tab_icon_color</item>
+        <item name="tabIndicator">@drawable/tab_indicator_bg</item>
+        <item name="tabIndicatorColor">@android:color/transparent</item>
+        <item name="tabIndicatorFullWidth">true</item>
+        <item name="tabIndicatorGravity">stretch</item>
+        <item name="tabRippleColor">@null</item>
+        <item name="tabSelectedTextColor">@color/on_primary</item>
+        <item name="tabTextAppearance">@style/Theme.OBilet.TabTextStyle</item>
+        <item name="tabGravity">fill</item>
+        <item name="tabInlineLabel">true</item>
+        <item name="tabMode">fixed</item>
+    </style>
+
+    <style name="Theme.OBilet.LocationItemCardStyle" parent="Theme.OBilet.CardStyle">
+        <item name="strokeWidth">0dp</item>
+    </style>
+
+    <style name="Theme.OBilet.LocationTextStyle" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/primary_color</item>
+        <item name="fontFamily">@font/nunito_bold</item>
+    </style>
+
+    <style name="Theme.OBilet.SearchBarCardViewStyle">
+        <item name="backgroundTint">@color/background_color</item>
+        <item name="strokeWidth">0dp</item>
+        <item name="cardCornerRadius">32dp</item>
+        <item name="cardElevation">8dp</item>
+    </style>
+
+
+    <style name="Theme.OBilet.ScrollToTopButtonCardViewStyle">
+        <item name="android:backgroundTint">#BBE9EDEF</item>
+        <item name="strokeWidth">0dp</item>
+    </style>
+
+    <style name="Theme.OBilet.SwitchDirectionButtonStyle">
+        <item name="android:backgroundTint">#88FFFFFF</item>
+        <item name="cardElevation">8dp</item>
+        <item name="strokeColor">@color/divider_color</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
 </resources>

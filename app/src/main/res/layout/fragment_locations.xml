@@ -15,12 +15,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <View
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:background="@color/divider_color"
+        app:layout_constraintBottom_toBottomOf="@id/toolbarHeightGuideline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/toolbarHeightGuideline" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/toolbarHeightGuideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.15" />
+
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/backBtnCv"
@@ -63,15 +73,14 @@
         app:layout_constraintTop_toTopOf="@+id/backBtnCv"
         tools:text="Title" />
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:id="@+id/searchBoxCv"
+        style="@style/Theme.OBilet.SearchBarCardViewStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        app:cardCornerRadius="32dp"
-        app:cardElevation="8dp"
         android:animateLayoutChanges="true"
         app:layout_constraintBottom_toBottomOf="@id/toolbarHeightGuideline"
         app:layout_constraintEnd_toStartOf="@id/cancelTv"
@@ -89,10 +98,10 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:background="@color/white"
+                android:background="@color/searchbar_background_color"
                 android:drawableStart="@drawable/ic_search"
                 android:drawablePadding="8dp"
-                android:drawableTint="@color/icon_primary_color"
+                android:drawableTint="@color/searchbar_drawable_tint_color"
                 android:longClickable="false"
                 android:padding="10dp"
                 android:textCursorDrawable="@null"
@@ -107,10 +116,10 @@
                 android:layout_marginEnd="16dp"
                 android:src="@drawable/ic_close"
                 android:visibility="gone"
-                app:tint="@color/primary_color"
+                app:tint="@color/searchbar_clear_text_button_color"
                 tools:visibility="visible" />
         </RelativeLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
     <TextView
         android:id="@+id/cancelTv"
@@ -140,30 +149,23 @@
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/scrollToTopCv"
+        style="@style/Theme.OBilet.ScrollToTopButtonCardViewStyle"
         android:layout_width="42dp"
         android:layout_height="42dp"
         android:layout_margin="32dp"
-        android:backgroundTint="@android:color/transparent"
         android:visibility="gone"
+        app:cardCornerRadius="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:strokeWidth="0dp"
         tools:visibility="visible">
 
-        <com.google.android.material.button.MaterialButton
+        <ImageView
             android:id="@+id/scrollToTopBtn"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:insetLeft="0dp"
-            android:insetTop="0dp"
-            android:insetRight="0dp"
-            android:insetBottom="0dp"
-            app:backgroundTint="#BBE9EDEF"
-            app:icon="@drawable/ic_up"
-            app:iconGravity="textStart"
-            app:iconPadding="0dp"
-            app:iconTint="@color/primary_color"
-            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.OBilet.Button.Rounded" />
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ic_up"
+            app:tint="@color/primary_color" />
     </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

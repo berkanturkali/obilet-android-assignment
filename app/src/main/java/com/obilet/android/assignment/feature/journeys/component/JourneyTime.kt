@@ -23,7 +23,7 @@ fun JourneyTime(
         fontFamily = FontFamily(Font(R.font.nunito_semi_bold)),
         fontSize = 14.sp,
         color = colorResource(
-            id = R.color.secondary_text_color
+            id = R.color.primary_text_color
         ),
         textAlign = TextAlign.Center
     )

@@ -12,6 +12,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
@@ -58,6 +59,11 @@ fun FeatureItem(
                     painter = painter,
                     contentDescription = null,
                     modifier = Modifier.size(20.dp),
+                    colorFilter = ColorFilter.tint(
+                        color = colorResource(
+                            id = R.color.icon_primary_color
+                        )
+                    )
                 )
             } else {
                 Icon(

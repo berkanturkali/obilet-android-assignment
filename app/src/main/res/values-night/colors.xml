@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="primary_color">#7E1921</color>
+    <color name="splash_background_color">@color/primary_color</color>
+    <color name="button_color">#0C362A</color>
+    <color name="primary_text_color">#E7E9EA</color>
+    <color name="secondary_text_color">#3C4448</color>
+    <color name="tertiary_text_color">#2C2C2C</color>
+    <color name="on_primary">@color/white</color>
+    <color name="button_text_color">@color/white</color>
+    <color name="background_color">#000009</color>
+    <color name="icon_primary_color">@color/primary_text_color_with_half_opacity</color>
+    <color name="divider_color">#333333</color>
+    <color name="icon_secondary_color">@color/on_primary</color>
+    <color name="primary_text_color_with_half_opacity">#50FFFFFF</color>
+    <color name="container_background_color">#1B1A1A</color>
+
+    <!-- Tab Layout -->
+    <color name="tab_layout_background_color">@color/background_color</color>
+
+    <!-- Card View -->
+    <color name="cardview_background_color">@color/background_color</color>
+    <color name="cardview_stroke_color">@color/divider_color</color>
+
+    <!-- Search Bar -->
+    <color name="searchbar_background_color">@color/background_color</color>
+    <color name="searchbar_clear_text_button_color">@color/on_primary</color>
+    <color name="searchbar_drawable_tint_color">@color/on_primary</color>
+
+    <color name="bus_section_date_button_unselected_background_color">@color/background_color
+    </color>
+</resources>

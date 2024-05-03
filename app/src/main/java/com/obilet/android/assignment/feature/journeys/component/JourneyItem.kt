@@ -10,6 +10,7 @@ import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -68,7 +69,9 @@ fun JourneyItem(
             .fillMaxWidth()
             .padding(8.dp),
         elevation = 8.dp,
-        shape = RoundedCornerShape(12.dp)
+        shape = RoundedCornerShape(12.dp),
+        backgroundColor = colorResource(id = R.color.background_color),
+        border = BorderStroke(1.dp, colorResource(id = R.color.divider_color))
     ) {
         Column(
             modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
