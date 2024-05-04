@@ -14,10 +14,16 @@
 |:--------------------------------------------------------------------------------:|
 | <img src="gifs/passenger_filter_dialog.gif" alt="passenger_filter" width="250"/> |
 
+### DarkMode
 
-|                                                                                                                                                    Dark Mode                                                                                                                                                    |
-|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| <img src="gifs/splash_dark.gif" alt="splash_dark" width="250"/> <img src="gifs/bus_section_dark.gif" alt="bus_section_dark" width="250"/> <img src="gifs/flight_section_dark.gif" alt="flight_section_dark" width="250"/><br/> <img align="left" src="gifs/journeys_dark.gif" alt="journeys_dark" width="250"/> |
+|                             Splash                              |                                Bus Section                                |                                 Flight Section                                  |
+|:---------------------------------------------------------------:|:-------------------------------------------------------------------------:|:-------------------------------------------------------------------------------:|
+| <img src="gifs/splash_dark.gif" alt="splash_dark" width="250"/> | <img src="gifs/bus_section_dark.gif" alt="bus_section_dark" width="250"/> | <img src="gifs/flight_section_dark.gif" alt="flight_section_dark" width="250"/> |
+
+|                              Journeys                               |
+|:-------------------------------------------------------------------:|
+| <img src="gifs/journeys_dark.gif" alt="journeys_dark" width="250"/> |
+
 
 ## Tech Features & Libraries
 
